@@ -1,53 +1,85 @@
 import Link from "next/link";
 
 type AchievementCardData = {
-  badge: string;
+  number: string;
   title: string;
   description: string;
   href: string;
+  badgeClassName: string;
 };
 
 const achievementCards: AchievementCardData[] = [
   {
-    badge: "01",
+    number: "1",
     title: "No Trigger",
     description:
-      "Build consistency by showing up before motivation appears. Start with one deliberate action.",
+      "Users take meaningful actions, but the system stays silent. The app fails to convert user actions into curiosity moments.",
     href: "/no-trigger",
+    badgeClassName: "bg-[#2c6e48]",
   },
   {
-    badge: "02",
+    number: "2",
     title: "Hidden Secrets",
     description:
-      "Unlock the patterns behind momentum. Explore insights that make progress easier to repeat.",
+      "\"Secrets\" are designed to create curiosity. Secrets need not be too lost in the dark, they can have some directional tension.",
     href: "/hidden-secrets",
+    badgeClassName: "bg-[#4c956c]",
   },
   {
-    badge: "03",
+    number: "3",
     title: "No Direction",
     description:
-      "When the next step is unclear, use this path to create structure and choose a meaningful direction.",
+      "Even when users notice the achievements, they don’t know what to do next. Awareness doesn’t turn into action.",
     href: "/no-direction",
+    badgeClassName: "bg-[#5dac7f]",
   },
 ];
 
-function AchievementCard({ badge, title, description, href }: AchievementCardData) {
+function AchievementCard({
+  number,
+  title,
+  description,
+  href,
+  badgeClassName,
+}: AchievementCardData) {
   return (
     <Link
       href={href}
-      className="group block h-full rounded-2xl border border-black/10 bg-white/80 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-black/20 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/80 focus-visible:ring-offset-2 dark:border-white/15 dark:bg-zinc-950/70 dark:hover:border-white/30 dark:focus-visible:ring-white"
+      className="group flex items-center gap-4 rounded-[18px] bg-white px-4 py-4 shadow-[0px_1px_2px_rgba(0,0,0,0.04),0px_8px_24px_rgba(0,0,0,0.04)] transition sm:gap-6 sm:px-6 sm:py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7a1f2b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f3f1ed]"
     >
-      <div className="flex h-full flex-col gap-4">
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-black/[0.03] text-xs font-semibold tracking-[0.2em] text-black/75 dark:border-white/20 dark:bg-white/10 dark:text-white/80">
-          {badge}
+      <div
+        className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-[14px] sm:h-16 sm:w-16 ${badgeClassName}`}
+      >
+        <span className="font-display text-[30px] leading-none text-[#f3eccd] sm:text-[32px]">
+          {number}
         </span>
-        <h2 className="font-display text-2xl leading-tight text-black transition group-hover:text-black/80 dark:text-white dark:group-hover:text-white/90">
+      </div>
+
+      <div className="h-12 w-px shrink-0 bg-[#e5e5e5] sm:h-14" aria-hidden />
+
+      <div className="min-w-0 flex-1">
+        <h2 className="text-[22px] leading-none font-semibold text-[#0f0f0f] sm:text-[25px]">
           {title}
         </h2>
-        <p className="text-sm leading-6 text-black/65 dark:text-white/65">{description}</p>
-        <span className="mt-auto inline-flex items-center gap-2 text-sm font-medium text-black/85 dark:text-white/85">
-          Explore <span aria-hidden>↗</span>
-        </span>
+        <p className="mt-2 text-sm leading-[1.45] text-[#6b6b6b] sm:text-[15px]">
+          {description}
+        </p>
+      </div>
+
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#7a1f2b]">
+        <svg
+          className="h-[18px] w-[18px] transition-transform group-hover:translate-x-0.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden
+        >
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
       </div>
     </Link>
   );
@@ -55,23 +87,19 @@ function AchievementCard({ badge, title, description, href }: AchievementCardDat
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.96),_rgba(244,244,245,0.8)_42%,_rgba(244,244,245,0.4)_100%)] px-4 py-10 dark:bg-[radial-gradient(circle_at_top,_rgba(24,24,27,1),_rgba(10,10,10,1)_55%,_rgba(0,0,0,1)_100%)] sm:px-6 lg:px-10">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10">
-        <header className="max-w-3xl space-y-4">
-          <p className="text-xs font-semibold tracking-[0.25em] text-black/60 uppercase dark:text-white/50">
-            Achievements
-          </p>
-          <h1 className="font-display text-4xl leading-tight text-black sm:text-5xl dark:text-white">
-            Choose your next challenge.
+    <main className="flex min-h-screen items-center justify-center bg-[#f3f1ed] px-4 py-10 sm:px-8 sm:py-14">
+      <div className="w-full max-w-[768px]">
+        <header className="mx-auto mb-10 max-w-2xl text-center">
+          <h1 className="font-display text-[38px] leading-[1.1] tracking-[-0.02em] text-[#0f0f0f] sm:text-[44px]">
+            Achievements system in cto.new
           </h1>
-          <p className="text-base leading-7 text-black/70 dark:text-white/70">
-            Pick one path to continue your progress. Each card opens a dedicated space
-            for that achievement track.
+          <p className="mt-3 text-base text-[#6b6b6b] sm:text-lg">
+            Pick a problem to explore.
           </p>
         </header>
 
-        <section aria-label="Achievement paths">
-          <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <section aria-label="Achievement problems" className="mx-auto w-full max-w-[672px]">
+          <ul className="space-y-5">
             {achievementCards.map((card) => (
               <li key={card.href}>
                 <AchievementCard {...card} />
