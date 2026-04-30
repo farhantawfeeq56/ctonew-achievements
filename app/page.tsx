@@ -1,65 +1,85 @@
-import Image from "next/image";
+import Link from "next/link";
+
+type AchievementCardData = {
+  badge: string;
+  title: string;
+  description: string;
+  href: string;
+};
+
+const achievementCards: AchievementCardData[] = [
+  {
+    badge: "01",
+    title: "No Trigger",
+    description:
+      "Build consistency by showing up before motivation appears. Start with one deliberate action.",
+    href: "/no-trigger",
+  },
+  {
+    badge: "02",
+    title: "Hidden Secrets",
+    description:
+      "Unlock the patterns behind momentum. Explore insights that make progress easier to repeat.",
+    href: "/hidden-secrets",
+  },
+  {
+    badge: "03",
+    title: "No Direction",
+    description:
+      "When the next step is unclear, use this path to create structure and choose a meaningful direction.",
+    href: "/no-direction",
+  },
+];
+
+function AchievementCard({ badge, title, description, href }: AchievementCardData) {
+  return (
+    <Link
+      href={href}
+      className="group block h-full rounded-2xl border border-black/10 bg-white/80 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-black/20 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/80 focus-visible:ring-offset-2 dark:border-white/15 dark:bg-zinc-950/70 dark:hover:border-white/30 dark:focus-visible:ring-white"
+    >
+      <div className="flex h-full flex-col gap-4">
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-black/[0.03] text-xs font-semibold tracking-[0.2em] text-black/75 dark:border-white/20 dark:bg-white/10 dark:text-white/80">
+          {badge}
+        </span>
+        <h2 className="font-display text-2xl leading-tight text-black transition group-hover:text-black/80 dark:text-white dark:group-hover:text-white/90">
+          {title}
+        </h2>
+        <p className="text-sm leading-6 text-black/65 dark:text-white/65">{description}</p>
+        <span className="mt-auto inline-flex items-center gap-2 text-sm font-medium text-black/85 dark:text-white/85">
+          Explore <span aria-hidden>↗</span>
+        </span>
+      </div>
+    </Link>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.96),_rgba(244,244,245,0.8)_42%,_rgba(244,244,245,0.4)_100%)] px-4 py-10 dark:bg-[radial-gradient(circle_at_top,_rgba(24,24,27,1),_rgba(10,10,10,1)_55%,_rgba(0,0,0,1)_100%)] sm:px-6 lg:px-10">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10">
+        <header className="max-w-3xl space-y-4">
+          <p className="text-xs font-semibold tracking-[0.25em] text-black/60 uppercase dark:text-white/50">
+            Achievements
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+          <h1 className="font-display text-4xl leading-tight text-black sm:text-5xl dark:text-white">
+            Choose your next challenge.
+          </h1>
+          <p className="text-base leading-7 text-black/70 dark:text-white/70">
+            Pick one path to continue your progress. Each card opens a dedicated space
+            for that achievement track.
+          </p>
+        </header>
+
+        <section aria-label="Achievement paths">
+          <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {achievementCards.map((card) => (
+              <li key={card.href}>
+                <AchievementCard {...card} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </main>
   );
 }
