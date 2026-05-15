@@ -4,10 +4,12 @@ import React, { useState } from "react";
 import { SceneSwitcher } from "./_components/scene-switcher";
 import { SceneOne } from "./_scenes/scene-one";
 import { SceneTwo } from "./_scenes/scene-two";
+import { SceneLinkRepository } from "./_scenes/scene-link-repository";
 
 const SCENES = [
   { id: "one", label: "Scene One" },
   { id: "two", label: "Scene Two" },
+  { id: "link-repository", label: "Link Repository" },
 ];
 
 export default function PreviewPage() {
@@ -33,6 +35,7 @@ export default function PreviewPage() {
           <div className="transition-all duration-300 ease-in-out">
             {currentScene === "one" && <SceneOne />}
             {currentScene === "two" && <SceneTwo />}
+            {currentScene === "link-repository" && <SceneLinkRepository />}
           </div>
         </div>
       </div>
