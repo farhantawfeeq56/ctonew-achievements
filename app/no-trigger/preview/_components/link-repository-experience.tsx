@@ -80,7 +80,7 @@ export function LinkRepositoryExperience() {
             </p>
           </header>
 
-          <div className="grid gap-5 px-4 py-5 sm:px-6 sm:py-6 lg:grid-cols-[minmax(0,1.26fr)_minmax(290px,0.92fr)] lg:gap-6">
+          <div className="grid gap-5 px-4 py-5 sm:px-6 sm:py-6 lg:gap-6">
             <section aria-label="Repository list">
               <div role="radiogroup" aria-label="Available repositories" className="space-y-2.5">
                 {REPOSITORY_OPTIONS.map((repository) => (
