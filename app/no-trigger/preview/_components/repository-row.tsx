@@ -23,19 +23,19 @@ export function RepositoryRow({
       role="radio"
       aria-checked={isSelected}
       onClick={() => onSelect(id)}
-      className={`group relative w-full rounded-xl border px-4 py-4 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1427] sm:px-5 ${
+      className={`group relative w-full rounded-[14px] border px-4 py-4 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#091125] sm:px-5 ${
         isSelected
-          ? "border-[#5f78db] bg-[#111b35]"
-          : "border-[#2a3452] bg-[#0d152a] hover:border-[#3f4f7a] hover:bg-[#101931]"
+          ? "border-[#38518a] bg-[#101a34]"
+          : "border-[#26355c] bg-[#0c1630] hover:border-[#334978] hover:bg-[#0f1a36]"
       }`}
       data-selected={isSelected}
     >
-      <div className={`flex items-start gap-3.5 ${isSelected ? "text-white" : "text-[#d8dff5]"}`}>
+      <div className="flex items-start gap-3.5">
         <div
-          className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${
+          className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border ${
             isSelected
-              ? "border-[#6d85eb] bg-[#122144] text-[#afc0ff]"
-              : "border-[#2f3a5c] bg-[#121c34] text-[#8d9ecb]"
+              ? "border-[#4662a3] bg-[#122145] text-[#b5c5f6]"
+              : "border-[#31456f] bg-[#12203f] text-[#8ea2d1]"
           }`}
         >
           <svg
@@ -56,43 +56,36 @@ export function RepositoryRow({
         </div>
 
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold sm:text-[15px]">{name}</p>
-          <p className="mt-1 text-sm leading-5 text-[#9ea9cb]">{description}</p>
-          <p className="mt-2 text-xs text-[#7a89b0]">
+          <p className="truncate text-[15px] font-semibold tracking-[-0.01em] text-[#eef2ff]">
+            {name}
+          </p>
+          <p className="mt-2 text-[15px] leading-7 text-[#9aa8cd]">{description}</p>
+          <p className="mt-2 text-[14px] text-[#7f8fb7]">
             {language} · {updatedAt}
           </p>
         </div>
 
         <div
-          className={`mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-all ${
+          className={`mt-1 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full border transition-colors ${
             isSelected
-              ? "border-[#6f86ee] bg-[#6f86ee] text-[#0a1123]"
-              : "border-[#3a4567] bg-transparent text-transparent group-hover:border-[#5f6f9f]"
+              ? "border-[#5e77b9] bg-[#111d3a]"
+              : "border-[#364b78] bg-transparent group-hover:border-[#50679c]"
           }`}
           aria-hidden
         >
-          <svg
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-3 w-3"
-          >
-            <path
-              d="M5.5 10.5L8.5 13.5L14.5 6.5"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <span
+            className={`h-[7px] w-[7px] rounded-full transition-colors ${
+              isSelected ? "bg-[#7e95d8]" : "bg-transparent"
+            }`}
+          />
         </div>
       </div>
 
       <div
-        className={`pointer-events-none absolute inset-0 rounded-xl transition-colors ${
+        className={`pointer-events-none absolute inset-0 rounded-[14px] ${
           isSelected
-            ? "shadow-[0_0_0_1px_rgba(95,120,219,0.25)]"
-            : "shadow-[0_0_0_1px_rgba(22,32,56,0.2)]"
+            ? "shadow-[0_0_0_1px_rgba(116,141,201,0.22)]"
+            : "shadow-[0_0_0_1px_rgba(25,37,66,0.3)]"
         }`}
         aria-hidden
       />
