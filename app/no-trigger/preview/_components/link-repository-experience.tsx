@@ -58,25 +58,30 @@ export function LinkRepositoryExperience() {
   );
 
   return (
-    <main className="min-h-screen bg-[#050914] px-4 py-8 text-[#e7ebf6] sm:px-6 sm:py-12 lg:px-10 lg:py-16">
-      <div className="mx-auto w-full max-w-6xl">
-        <div className="overflow-hidden rounded-3xl border border-[#232b43] bg-[#0c1324] shadow-[0_22px_70px_rgba(0,0,0,0.55)]">
-          <div className="border-b border-[#1b2136] px-5 py-6 sm:px-8 sm:py-8">
-            <p className="text-xs font-semibold tracking-[0.16em] uppercase text-[#8d9ac0]">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#050914] px-4 py-8 text-[#e7ebf6] sm:px-6 sm:py-12">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-[-120px] left-1/2 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#22336d]/30 blur-[120px]" />
+        <div className="absolute right-[-140px] bottom-[-180px] h-[420px] w-[420px] rounded-full bg-[#1a2a5e]/25 blur-[140px]" />
+      </div>
+
+      <div className="relative mx-auto w-full max-w-[920px]">
+        <div className="overflow-hidden rounded-[28px] border border-[#202841] bg-[linear-gradient(180deg,#0d1427_0%,#0a1121_100%)] shadow-[0_30px_90px_rgba(0,0,0,0.58)]">
+          <header className="border-b border-[#1b2340] px-5 py-6 sm:px-8 sm:py-8">
+            <p className="text-xs font-semibold tracking-[0.16em] uppercase text-[#8c9ac2]">
               Repository settings
             </p>
-            <h1 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+            <h1 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-[30px]">
               Link repository
             </h1>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-[#a8b2ce] sm:text-base">
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-[#a7b1cd] sm:text-base">
               Choose which GitHub repository should power achievement tracking. Selection
               stays local in this preview.
             </p>
-          </div>
+          </header>
 
-          <div className="grid gap-6 px-5 py-6 sm:px-8 sm:py-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-            <section aria-label="Repository list" className="space-y-3">
-              <div role="radiogroup" aria-label="Available repositories" className="space-y-3">
+          <div className="grid gap-6 px-5 py-6 sm:px-7 sm:py-7 md:grid-cols-[minmax(0,1.22fr)_minmax(0,0.95fr)] md:gap-5">
+            <section aria-label="Repository list">
+              <div role="radiogroup" aria-label="Available repositories" className="space-y-2.5">
                 {REPOSITORY_OPTIONS.map((repository) => (
                   <RepositoryRow
                     key={repository.id}
@@ -92,14 +97,11 @@ export function LinkRepositoryExperience() {
               </div>
             </section>
 
-            <aside className="rounded-2xl border border-[#202842] bg-[#0f172d] p-5 sm:p-6">
+            <aside className="flex h-full flex-col rounded-2xl border border-[#232d4a] bg-[#0f172d]/85 p-5 sm:p-6">
               <h2 className="text-lg font-semibold text-white">Ready to link</h2>
 
               <div className="mt-5">
-                <label
-                  htmlFor="repository-name"
-                  className="text-sm font-medium text-[#bdc7e4]"
-                >
+                <label htmlFor="repository-name" className="text-sm font-medium text-[#bcc7e4]">
                   Repository name
                 </label>
                 <input
@@ -108,7 +110,7 @@ export function LinkRepositoryExperience() {
                   value={selectedRepository?.name ?? ""}
                   placeholder="Select a repository"
                   readOnly
-                  className="mt-2 w-full rounded-xl border border-[#2b3553] bg-[#0a1123] px-4 py-3 text-sm text-[#e7ebf6] placeholder:text-[#60709c] focus-visible:outline-none"
+                  className="mt-2 w-full rounded-xl border border-[#2d3858] bg-[#0a1123] px-4 py-3 text-sm text-[#e7ebf6] placeholder:text-[#60709c] focus-visible:outline-none"
                 />
               </div>
 
@@ -121,7 +123,7 @@ export function LinkRepositoryExperience() {
               <button
                 type="button"
                 disabled={!selectedRepository}
-                className="mt-6 inline-flex w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f172d] disabled:cursor-not-allowed disabled:bg-[#2a324d] disabled:text-[#8893b3] enabled:bg-[#6d86f7] enabled:text-white enabled:hover:bg-[#7f96ff]"
+                className="mt-auto inline-flex w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#829cf9] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f172d] disabled:cursor-not-allowed disabled:bg-[#2b3551] disabled:text-[#8d97b7] enabled:bg-[#6c85f6] enabled:text-white enabled:hover:bg-[#7c93ff]"
               >
                 Link
               </button>
