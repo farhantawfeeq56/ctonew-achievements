@@ -68,9 +68,25 @@ export function LinkRepositoryExperience() {
       <div className="relative mx-auto w-full max-w-[948px]">
         <div className="overflow-hidden rounded-[30px] border border-[#1c2a4b] bg-[linear-gradient(180deg,#0b1327_0%,#091125_100%)] shadow-[0_35px_90px_rgba(1,4,16,0.72)]">
           <header className="border-b border-[#172341] px-6 py-7 sm:px-9 sm:py-8">
-            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#7f8eb8]">
-              Repository settings
-            </p>
+            <button
+              type="button"
+              className="[font-synthesis:none] flex items-center gap-2 antialiased"
+            >
+              <span className="flex size-4 shrink-0 items-center justify-center">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path
+                    d="M10 6H2M2 6L5.5 2.5M2 6L5.5 9.5"
+                    stroke="#938DA9"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span className="font-['Instrument_Sans',system-ui,sans-serif] text-xs/5 font-medium text-[#938DA9]">
+                Back
+              </span>
+            </button>
             <h1 className="mt-3 text-[34px] leading-none font-semibold tracking-[-0.02em] text-[#f6f8ff]">
               Link repository
             </h1>
