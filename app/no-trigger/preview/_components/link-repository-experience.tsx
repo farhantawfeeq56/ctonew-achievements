@@ -90,10 +90,54 @@ export function LinkRepositoryExperience() {
             <h1 className="mt-3 text-[34px] leading-none font-semibold tracking-[-0.02em] text-[#f6f8ff]">
               Link repository
             </h1>
-            <p className="mt-4 max-w-[610px] text-[15px] leading-7 text-[#9eabcc]">
-              Choose which GitHub repository should power achievement tracking. Selection
-              stays local in this preview.
-            </p>
+            <div className="mt-4 [font-synthesis:none] flex items-center gap-4.5 antialiased">
+              <div className="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path
+                    d="M11.6667 7.00001C11.6667 9.57734 9.57734 11.6667 7.00001 11.6667C4.79584 11.6667 2.94834 10.1383 2.46001 8.08334"
+                    stroke="#B3AFC2"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M2.33331 7.00001C2.33331 4.42268 4.42265 2.33334 6.99998 2.33334C9.20415 2.33334 11.0516 3.86168 11.54 5.91668"
+                    stroke="#B3AFC2"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M2.33331 9.33334V7.00001H4.66665"
+                    stroke="#B3AFC2"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M11.6667 4.66667V7.00001H9.33331"
+                    stroke="#B3AFC2"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span className="font-['Instrument_Sans',system-ui,sans-serif] font-medium text-[#B3AFC2] text-xs/5">
+                  Refetch
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path
+                    d="M7.58333 2.33334C7.58333 2.01118 7.32217 1.75001 7 1.75001C6.67783 1.75001 6.41667 2.01118 6.41667 2.33334V3.00451C5.94561 3.11025 5.50867 3.30576 5.12549 3.57279L4.65084 3.09814C4.42303 2.87034 4.05368 2.87034 3.82587 3.09814C3.59807 3.32595 3.59807 3.69531 3.82587 3.92311L4.30054 4.39778C4.0335 4.78096 3.838 5.2179 3.73226 5.68895H3.06109C2.73892 5.68895 2.47776 5.95012 2.47776 6.27229C2.47776 6.59446 2.73892 6.85562 3.06109 6.85562H3.73226C3.838 7.32668 4.0335 7.76362 4.30054 8.1468L3.82587 8.62147C3.59807 8.84927 3.59807 9.21863 3.82587 9.44644C4.05368 9.67424 4.42303 9.67424 4.65084 9.44644L5.12549 8.97179C5.50867 9.23882 5.94561 9.43433 6.41667 9.54007V10.2112C6.41667 10.5334 6.67783 10.7946 7 10.7946C7.32217 10.7946 7.58333 10.5334 7.58333 10.2112V9.54007C8.05439 9.43433 8.49133 9.23882 8.87451 8.97179L9.34916 9.44644C9.57697 9.67424 9.94632 9.67424 10.1741 9.44644C10.4019 9.21863 10.4019 8.84927 10.1741 8.62147L9.69946 8.1468C9.9665 7.76362 10.162 7.32668 10.2677 6.85562H10.9389C11.2611 6.85562 11.5222 6.59446 11.5222 6.27229C11.5222 5.95012 11.2611 5.68895 10.9389 5.68895H10.2677C10.162 5.2179 9.9665 4.78096 9.69946 4.39778L10.1741 3.92311C10.4019 3.69531 10.4019 3.32595 10.1741 3.09814C9.94632 2.87034 9.57697 2.87034 9.34916 3.09814L8.87451 3.57279C8.49133 3.30576 8.05439 3.11025 7.58333 3.00451V2.33334ZM7 8.16668C5.95546 8.16668 5.10833 7.31955 5.10833 6.27501C5.10833 5.23047 5.95546 4.38334 7 4.38334C8.04454 4.38334 8.89167 5.23047 8.89167 6.27501C8.89167 7.31955 8.04454 8.16668 7 8.16668Z"
+                    fill="#B3AFC2"
+                  />
+                </svg>
+                <span className="font-['Instrument_Sans',system-ui,sans-serif] font-medium text-[#B3AFC2] text-xs/5">
+                  Configure app
+                </span>
+              </div>
+            </div>
           </header>
 
           <div className="grid gap-5 px-4 py-5 sm:px-6 sm:py-6 lg:gap-6">
