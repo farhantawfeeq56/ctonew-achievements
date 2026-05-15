@@ -23,21 +23,19 @@ export function RepositoryRow({
       role="radio"
       aria-checked={isSelected}
       onClick={() => onSelect(id)}
-      className={`group relative w-full rounded-2xl border border-transparent px-4 py-4 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c1324] sm:px-5 ${
-        isSelected ? "bg-[#111c36]" : "bg-[#0d162c] hover:bg-[#111a31]"
+      className={`group relative w-full rounded-xl border px-4 py-4 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1427] sm:px-5 ${
+        isSelected
+          ? "border-[#5f78db] bg-[#111b35]"
+          : "border-[#2a3452] bg-[#0d152a] hover:border-[#3f4f7a] hover:bg-[#101931]"
       }`}
       data-selected={isSelected}
     >
-      <div
-        className={`flex items-start gap-4 rounded-xl ${
-          isSelected ? "text-white" : "text-[#d8e0f7]"
-        }`}
-      >
+      <div className={`flex items-start gap-3.5 ${isSelected ? "text-white" : "text-[#d8dff5]"}`}>
         <div
-          className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${
+          className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${
             isSelected
-              ? "border-[#7f96ff] bg-[#101b38] text-[#adc0ff]"
-              : "border-[#2f3958] bg-[#111a31] text-[#90a0cc]"
+              ? "border-[#6d85eb] bg-[#122144] text-[#afc0ff]"
+              : "border-[#2f3a5c] bg-[#121c34] text-[#8d9ecb]"
           }`}
         >
           <svg
@@ -58,18 +56,18 @@ export function RepositoryRow({
         </div>
 
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold sm:text-base">{name}</p>
-          <p className="mt-1 text-sm leading-5 text-[#9cabcf]">{description}</p>
-          <p className="mt-2 text-xs text-[#7988af]">
+          <p className="truncate text-sm font-semibold sm:text-[15px]">{name}</p>
+          <p className="mt-1 text-sm leading-5 text-[#9ea9cb]">{description}</p>
+          <p className="mt-2 text-xs text-[#7a89b0]">
             {language} · {updatedAt}
           </p>
         </div>
 
         <div
-          className={`mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-colors ${
+          className={`mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-all ${
             isSelected
-              ? "border-[#7f96ff] bg-[#7f96ff] text-[#0a1123]"
-              : "border-[#3b4668] bg-transparent text-transparent group-hover:border-[#6074b1]"
+              ? "border-[#6f86ee] bg-[#6f86ee] text-[#0a1123]"
+              : "border-[#3a4567] bg-transparent text-transparent group-hover:border-[#5f6f9f]"
           }`}
           aria-hidden
         >
@@ -91,10 +89,10 @@ export function RepositoryRow({
       </div>
 
       <div
-        className={`pointer-events-none absolute inset-0 rounded-2xl border transition-colors ${
+        className={`pointer-events-none absolute inset-0 rounded-xl transition-colors ${
           isSelected
-            ? "border-[#6d86f7] shadow-[0_0_0_1px_rgba(109,134,247,0.2)]"
-            : "border-[#2c3553] group-hover:border-[#44507a]"
+            ? "shadow-[0_0_0_1px_rgba(95,120,219,0.25)]"
+            : "shadow-[0_0_0_1px_rgba(22,32,56,0.2)]"
         }`}
         aria-hidden
       />
