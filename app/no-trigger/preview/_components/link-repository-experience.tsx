@@ -22,7 +22,7 @@ const REPOSITORY_OPTIONS: RepositoryOption[] = [
   {
     id: "repo-2",
     name: "cto-new/product-web",
-    description: "Main app shell, workspace UX, and authenticated dashboard flows.",
+    description: "Main app shell, workspace UX, and authenticated product flows.",
     language: "TypeScript",
     updatedAt: "Updated yesterday",
   },
@@ -58,28 +58,29 @@ export function LinkRepositoryExperience() {
   );
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#050914] px-4 py-8 text-[#e7ebf6] sm:px-6 sm:py-12">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#040816] px-4 py-8 text-[#e5ebff] sm:px-6 sm:py-10">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-[-120px] left-1/2 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#22336d]/30 blur-[120px]" />
-        <div className="absolute right-[-140px] bottom-[-180px] h-[420px] w-[420px] rounded-full bg-[#1a2a5e]/25 blur-[140px]" />
+        <div className="absolute left-1/2 top-[-240px] h-[540px] w-[540px] -translate-x-1/2 rounded-full bg-[#1e2f64]/35 blur-[160px]" />
+        <div className="absolute -bottom-[180px] right-[-220px] h-[560px] w-[560px] rounded-full bg-[#152453]/30 blur-[170px]" />
+        <div className="absolute -left-[180px] bottom-[8%] h-[420px] w-[420px] rounded-full bg-[#0f1b3f]/35 blur-[145px]" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-[920px]">
-        <div className="overflow-hidden rounded-[28px] border border-[#202841] bg-[linear-gradient(180deg,#0d1427_0%,#0a1121_100%)] shadow-[0_30px_90px_rgba(0,0,0,0.58)]">
-          <header className="border-b border-[#1b2340] px-5 py-6 sm:px-8 sm:py-8">
-            <p className="text-xs font-semibold tracking-[0.16em] uppercase text-[#8c9ac2]">
+      <div className="relative mx-auto w-full max-w-[948px]">
+        <div className="overflow-hidden rounded-[30px] border border-[#1c2a4b] bg-[linear-gradient(180deg,#0b1327_0%,#091125_100%)] shadow-[0_35px_90px_rgba(1,4,16,0.72)]">
+          <header className="border-b border-[#172341] px-6 py-7 sm:px-9 sm:py-8">
+            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#7f8eb8]">
               Repository settings
             </p>
-            <h1 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-[30px]">
+            <h1 className="mt-3 text-[34px] leading-none font-semibold tracking-[-0.02em] text-[#f6f8ff]">
               Link repository
             </h1>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-[#a7b1cd] sm:text-base">
+            <p className="mt-4 max-w-[610px] text-[15px] leading-7 text-[#9eabcc]">
               Choose which GitHub repository should power achievement tracking. Selection
               stays local in this preview.
             </p>
           </header>
 
-          <div className="grid gap-6 px-5 py-6 sm:px-7 sm:py-7 md:grid-cols-[minmax(0,1.22fr)_minmax(0,0.95fr)] md:gap-5">
+          <div className="grid gap-5 px-4 py-5 sm:px-6 sm:py-6 lg:grid-cols-[minmax(0,1.26fr)_minmax(290px,0.92fr)] lg:gap-6">
             <section aria-label="Repository list">
               <div role="radiogroup" aria-label="Available repositories" className="space-y-2.5">
                 {REPOSITORY_OPTIONS.map((repository) => (
@@ -97,11 +98,13 @@ export function LinkRepositoryExperience() {
               </div>
             </section>
 
-            <aside className="flex h-full flex-col rounded-2xl border border-[#232d4a] bg-[#0f172d]/85 p-5 sm:p-6">
-              <h2 className="text-lg font-semibold text-white">Ready to link</h2>
+            <aside className="flex min-h-[430px] flex-col rounded-[20px] border border-[#22345d] bg-[linear-gradient(180deg,rgba(13,23,48,0.82)_0%,rgba(10,18,39,0.72)_100%)] p-5 sm:p-6">
+              <h2 className="text-[32px] leading-none font-semibold tracking-[-0.018em] text-[#f6f8ff] lg:text-[30px]">
+                Ready to link
+              </h2>
 
-              <div className="mt-5">
-                <label htmlFor="repository-name" className="text-sm font-medium text-[#bcc7e4]">
+              <div className="mt-6">
+                <label htmlFor="repository-name" className="text-sm font-medium text-[#b7c2e3]">
                   Repository name
                 </label>
                 <input
@@ -110,11 +113,11 @@ export function LinkRepositoryExperience() {
                   value={selectedRepository?.name ?? ""}
                   placeholder="Select a repository"
                   readOnly
-                  className="mt-2 w-full rounded-xl border border-[#2d3858] bg-[#0a1123] px-4 py-3 text-sm text-[#e7ebf6] placeholder:text-[#60709c] focus-visible:outline-none"
+                  className="mt-2 w-full rounded-[12px] border border-[#2a3a63] bg-[#071027] px-4 py-3 text-[15px] text-[#e7ecff] placeholder:text-[#6071a1] focus-visible:outline-none"
                 />
               </div>
 
-              <p className="mt-4 min-h-6 text-sm text-[#8d9ac0]">
+              <p className="mt-4 min-h-6 text-sm leading-6 text-[#8d9dc3]">
                 {selectedRepository
                   ? `Selected: ${selectedRepository.language} · ${selectedRepository.updatedAt}`
                   : "Choose a repository from the list to continue."}
@@ -123,7 +126,7 @@ export function LinkRepositoryExperience() {
               <button
                 type="button"
                 disabled={!selectedRepository}
-                className="mt-auto inline-flex w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#829cf9] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f172d] disabled:cursor-not-allowed disabled:bg-[#2b3551] disabled:text-[#8d97b7] enabled:bg-[#6c85f6] enabled:text-white enabled:hover:bg-[#7c93ff]"
+                className="mt-auto inline-flex w-full items-center justify-center rounded-[12px] px-4 py-3 text-sm font-semibold tracking-[0.01em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ca6ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1730] disabled:cursor-not-allowed disabled:border disabled:border-[#2c3a61] disabled:bg-[#34436c] disabled:text-[#95a3c9] enabled:bg-[#617de8] enabled:text-white enabled:hover:bg-[#6d87ec]"
               >
                 Link
               </button>
