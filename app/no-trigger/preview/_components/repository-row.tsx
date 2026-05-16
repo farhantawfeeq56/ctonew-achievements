@@ -15,8 +15,8 @@ export function RepositoryRow({ id, name, isSelected, onSelect }: RepositoryRowP
       role="radio"
       aria-checked={isSelected}
       onClick={() => onSelect(id)}
-      className={`[font-synthesis:none] flex h-8 w-full shrink-0 items-center gap-4 rounded-lg px-3 py-5 text-left antialiased transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#091125] ${
-        isSelected ? "bg-[#1A2133]" : "bg-transparent hover:bg-[#121a2d]"
+      className={`[font-synthesis:none] flex min-h-[40px] w-full shrink-0 items-center gap-4 rounded-[8px] px-3 py-2.5 text-left antialiased transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-inset ${
+        isSelected ? "bg-[#1A2133]" : "bg-transparent hover:bg-[#2A2732]"
       }`}
       data-selected={isSelected}
     >
@@ -33,7 +33,7 @@ export function RepositoryRow({ id, name, isSelected, onSelect }: RepositoryRowP
         </svg>
       </div>
 
-      <div className="font-['Instrument_Sans',system-ui,sans-serif] grow basis-[0%] content-center text-sm/5.25 font-medium tracking-[-0.01em] text-[#DDD9E6]">
+      <div className="font-['Instrument_Sans',system-ui,sans-serif] grow basis-[0%] content-center text-sm/[21px] font-medium tracking-[-0.01em] text-[#DDD9E6]">
         {name}
       </div>
     </button>
