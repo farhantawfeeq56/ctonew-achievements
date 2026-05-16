@@ -11,7 +11,9 @@ function DotIcon({ active = false }: { active?: boolean }) {
     />
   );
 }
-
+type MainScreenNewProps = {
+  repositoryLabel: string;
+};
 export function MainScreenNew({ repositoryLabel }: MainScreenNewProps) {
   const readableRepositoryLabel = repositoryLabel.trim() || "project";
 
