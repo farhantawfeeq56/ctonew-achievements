@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { RepositoryRow } from "./repository-row";
 
 type RepositoryOption = {
@@ -14,135 +14,123 @@ type RepositoryOption = {
 const REPOSITORY_OPTIONS: RepositoryOption[] = [
   {
     id: "repo-1",
-    name: "cto-new/achievements-engine",
-    description: "Core events pipeline and achievement progression logic.",
+    name: "farhantawfeeq56/unblur-app",
+    description: "Internal tools for restoring and validating image clarity workflows.",
     language: "TypeScript",
     updatedAt: "Updated 2 hours ago",
   },
   {
     id: "repo-2",
-    name: "cto-new/product-web",
-    description: "Main app shell, workspace UX, and authenticated product flows.",
+    name: "farhantawfeeq56/taro-warehouse-simulation",
+    description: "Simulation models and operations UI for warehouse planning experiments.",
     language: "TypeScript",
     updatedAt: "Updated yesterday",
   },
   {
     id: "repo-3",
-    name: "cto-new/design-system",
-    description: "Shared tokens, primitives, and accessible component contracts.",
-    language: "CSS",
+    name: "farhantawfeeq56/sentina",
+    description: "Main product surface and analysis workflows for Sentina.",
+    language: "TypeScript",
     updatedAt: "Updated 3 days ago",
   },
   {
     id: "repo-4",
-    name: "cto-new/data-platform",
-    description: "Ingestion jobs, analytics models, and warehouse transformations.",
-    language: "Python",
-    updatedAt: "Updated 5 days ago",
-  },
-  {
-    id: "repo-5",
-    name: "cto-new/developer-docs",
-    description: "Product docs, API guides, and onboarding references.",
+    name: "farhantawfeeq56/postmortor",
+    description: "Incident reviews, writeups, and operational follow-up tooling.",
     language: "MDX",
-    updatedAt: "Updated 1 week ago",
+    updatedAt: "Updated 5 days ago",
   },
 ];
 
 export function LinkRepositoryExperience() {
   const [selectedRepositoryId, setSelectedRepositoryId] = useState<string | null>(null);
 
-  const selectedRepository = useMemo(
-    () => REPOSITORY_OPTIONS.find((repository) => repository.id === selectedRepositoryId) ?? null,
-    [selectedRepositoryId],
-  );
+  const selectedRepository =
+    REPOSITORY_OPTIONS.find((repository) => repository.id === selectedRepositoryId) ?? null;
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#040816] px-4 py-8 text-[#e5ebff] sm:px-6 sm:py-10">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-[-240px] h-[540px] w-[540px] -translate-x-1/2 rounded-full bg-[#1e2f64]/35 blur-[160px]" />
-        <div className="absolute -bottom-[180px] right-[-220px] h-[560px] w-[560px] rounded-full bg-[#152453]/30 blur-[170px]" />
-        <div className="absolute -left-[180px] bottom-[8%] h-[420px] w-[420px] rounded-full bg-[#0f1b3f]/35 blur-[145px]" />
-      </div>
+    <main className="flex min-h-screen bg-[#05050A] text-[#F2F1F7]">
+      <div className="flex w-full justify-center bg-[linear-gradient(180deg,#131720_0%,#0D111A_100%)] px-4 py-5 sm:px-6 sm:py-8">
+        <section className="w-full max-w-[576px] rounded-[22px] border border-white/8 bg-[#0A0813] px-4 py-5 shadow-[0_24px_90px_rgba(0,0,0,0.38)] sm:px-6 sm:py-6">
+          <div className="flex flex-col gap-5">
+            <header className="flex flex-col gap-3.5">
+              <button
+                type="button"
+                className="[font-synthesis:none] inline-flex w-fit items-center gap-2 antialiased"
+              >
+                <span className="flex size-4 shrink-0 items-center justify-center" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path
+                      d="M7.5 2.25 3.75 6 7.5 9.75"
+                      stroke="#938DA9"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span className="font-['Instrument_Sans',system-ui,sans-serif] text-xs/5 font-medium text-[#938DA9]">
+                  Back
+                </span>
+              </button>
 
-      <div className="relative mx-auto w-full max-w-[948px]">
-        <div className="overflow-hidden rounded-[30px] border border-[#1c2a4b] bg-[linear-gradient(180deg,#0b1327_0%,#091125_100%)] shadow-[0_35px_90px_rgba(1,4,16,0.72)]">
-          <header className="border-b border-[#172341] px-6 py-7 sm:px-9 sm:py-8">
-            <button
-              type="button"
-              className="[font-synthesis:none] flex items-center gap-2 antialiased"
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                <div className="min-w-0 flex-1">
+                  <h1 className="font-['Instrument_Sans',system-ui,sans-serif] text-[24px] leading-[34px] font-semibold tracking-[-0.02em] text-[#F2F1F7]">
+                    Link repository
+                  </h1>
+
+                  <div className="[font-synthesis:none] mt-2 flex flex-wrap items-center gap-x-[18px] gap-y-2 antialiased">
+                    <div className="flex items-center gap-2">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                        <path
+                          d="M11.6 7a4.6 4.6 0 1 1-1.35-3.25"
+                          stroke="#B3AFC2"
+                          strokeWidth="1.25"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M11.6 2.4v2.8H8.8"
+                          stroke="#B3AFC2"
+                          strokeWidth="1.25"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <span className="font-['Instrument_Sans',system-ui,sans-serif] text-xs/5 font-medium text-[#B3AFC2]">
+                        Refetch
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="#B3AFC2" aria-hidden="true">
+                        <path d="M7 1.17A5.83 5.83 0 0 0 5.15 12.7c.29.05.4-.12.4-.28v-.98c-1.64.36-1.99-.7-1.99-.7-.27-.67-.66-.85-.66-.85-.54-.37.04-.37.04-.37.6.04.92.62.92.62.53.9 1.4.64 1.74.49.06-.39.21-.64.39-.79-1.3-.15-2.66-.65-2.66-2.9 0-.64.23-1.16.6-1.57-.06-.15-.26-.76.06-1.58 0 0 .49-.16 1.61.6A5.6 5.6 0 0 1 7 4.76a5.6 5.6 0 0 1 1.47.2c1.12-.76 1.61-.6 1.61-.6.32.82.12 1.43.06 1.58.38.41.6.93.6 1.57 0 2.26-1.37 2.74-2.67 2.89.22.19.41.57.41 1.16v1.72c0 .16.11.34.4.28A5.83 5.83 0 0 0 7 1.17Z" />
+                      </svg>
+                      <span className="font-['Instrument_Sans',system-ui,sans-serif] text-xs/5 font-medium text-[#B3AFC2]">
+                        Configure app
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex h-8 w-full items-center rounded-[9px] border-2 border-white/8 bg-[#2A2732] px-4 sm:w-[201px]">
+                  <input
+                    type="text"
+                    placeholder="Search repos"
+                    readOnly
+                    aria-label="Search repositories"
+                    className="w-full border-0 bg-transparent font-['Instrument_Sans',system-ui,sans-serif] text-xs/6 font-medium text-[#8E8A99] placeholder:text-[#8E8A99] focus:outline-none"
+                  />
+                </div>
+              </div>
+            </header>
+
+            <section
+              aria-label="Repository list"
+              className="overflow-hidden rounded-[8px] bg-[#23202B]"
             >
-              <span className="flex size-4 shrink-0 items-center justify-center">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path
-                    d="M10 6H2M2 6L5.5 2.5M2 6L5.5 9.5"
-                    stroke="#938DA9"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-              <span className="font-['Instrument_Sans',system-ui,sans-serif] text-xs/5 font-medium text-[#938DA9]">
-                Back
-              </span>
-            </button>
-            <h1 className="mt-3 text-[34px] leading-none font-semibold tracking-[-0.02em] text-[#f6f8ff]">
-              Link repository
-            </h1>
-            <div className="mt-4 [font-synthesis:none] flex items-center gap-4.5 antialiased">
-              <div className="flex items-center gap-2">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path
-                    d="M11.6667 7.00001C11.6667 9.57734 9.57734 11.6667 7.00001 11.6667C4.79584 11.6667 2.94834 10.1383 2.46001 8.08334"
-                    stroke="#B3AFC2"
-                    strokeWidth="1.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M2.33331 7.00001C2.33331 4.42268 4.42265 2.33334 6.99998 2.33334C9.20415 2.33334 11.0516 3.86168 11.54 5.91668"
-                    stroke="#B3AFC2"
-                    strokeWidth="1.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M2.33331 9.33334V7.00001H4.66665"
-                    stroke="#B3AFC2"
-                    strokeWidth="1.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M11.6667 4.66667V7.00001H9.33331"
-                    stroke="#B3AFC2"
-                    strokeWidth="1.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <span className="font-['Instrument_Sans',system-ui,sans-serif] font-medium text-[#B3AFC2] text-xs/5">
-                  Refetch
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path
-                    d="M7.58333 2.33334C7.58333 2.01118 7.32217 1.75001 7 1.75001C6.67783 1.75001 6.41667 2.01118 6.41667 2.33334V3.00451C5.94561 3.11025 5.50867 3.30576 5.12549 3.57279L4.65084 3.09814C4.42303 2.87034 4.05368 2.87034 3.82587 3.09814C3.59807 3.32595 3.59807 3.69531 3.82587 3.92311L4.30054 4.39778C4.0335 4.78096 3.838 5.2179 3.73226 5.68895H3.06109C2.73892 5.68895 2.47776 5.95012 2.47776 6.27229C2.47776 6.59446 2.73892 6.85562 3.06109 6.85562H3.73226C3.838 7.32668 4.0335 7.76362 4.30054 8.1468L3.82587 8.62147C3.59807 8.84927 3.59807 9.21863 3.82587 9.44644C4.05368 9.67424 4.42303 9.67424 4.65084 9.44644L5.12549 8.97179C5.50867 9.23882 5.94561 9.43433 6.41667 9.54007V10.2112C6.41667 10.5334 6.67783 10.7946 7 10.7946C7.32217 10.7946 7.58333 10.5334 7.58333 10.2112V9.54007C8.05439 9.43433 8.49133 9.23882 8.87451 8.97179L9.34916 9.44644C9.57697 9.67424 9.94632 9.67424 10.1741 9.44644C10.4019 9.21863 10.4019 8.84927 10.1741 8.62147L9.69946 8.1468C9.9665 7.76362 10.162 7.32668 10.2677 6.85562H10.9389C11.2611 6.85562 11.5222 6.59446 11.5222 6.27229C11.5222 5.95012 11.2611 5.68895 10.9389 5.68895H10.2677C10.162 5.2179 9.9665 4.78096 9.69946 4.39778L10.1741 3.92311C10.4019 3.69531 10.4019 3.32595 10.1741 3.09814C9.94632 2.87034 9.57697 2.87034 9.34916 3.09814L8.87451 3.57279C8.49133 3.30576 8.05439 3.11025 7.58333 3.00451V2.33334ZM7 8.16668C5.95546 8.16668 5.10833 7.31955 5.10833 6.27501C5.10833 5.23047 5.95546 4.38334 7 4.38334C8.04454 4.38334 8.89167 5.23047 8.89167 6.27501C8.89167 7.31955 8.04454 8.16668 7 8.16668Z"
-                    fill="#B3AFC2"
-                  />
-                </svg>
-                <span className="font-['Instrument_Sans',system-ui,sans-serif] font-medium text-[#B3AFC2] text-xs/5">
-                  Configure app
-                </span>
-              </div>
-            </div>
-          </header>
-
-          <div className="grid gap-5 px-4 py-5 sm:px-6 sm:py-6 lg:gap-6">
-            <section aria-label="Repository list">
-              <div role="radiogroup" aria-label="Available repositories" className="space-y-2.5">
+              <div role="radiogroup" aria-label="Available repositories" className="flex flex-col">
                 {REPOSITORY_OPTIONS.map((repository) => (
                   <RepositoryRow
                     key={repository.id}
@@ -158,41 +146,32 @@ export function LinkRepositoryExperience() {
               </div>
             </section>
 
-            <aside className="flex min-h-[430px] flex-col rounded-[20px] border border-[#22345d] bg-[linear-gradient(180deg,rgba(13,23,48,0.82)_0%,rgba(10,18,39,0.72)_100%)] p-5 sm:p-6">
-              <h2 className="text-[32px] leading-none font-semibold tracking-[-0.018em] text-[#f6f8ff] lg:text-[30px]">
-                Ready to link
-              </h2>
-
-              <div className="mt-6">
-                <label htmlFor="repository-name" className="text-sm font-medium text-[#b7c2e3]">
-                  Repository name
-                </label>
-                <input
-                  id="repository-name"
-                  type="text"
-                  value={selectedRepository?.name ?? ""}
-                  placeholder="Select a repository"
-                  readOnly
-                  className="mt-2 w-full rounded-[12px] border border-[#2a3a63] bg-[#071027] px-4 py-3 text-[15px] text-[#e7ecff] placeholder:text-[#6071a1] focus-visible:outline-none"
-                />
-              </div>
-
-              <p className="mt-4 min-h-6 text-sm leading-6 text-[#8d9dc3]">
-                {selectedRepository
-                  ? `Selected: ${selectedRepository.language} · ${selectedRepository.updatedAt}`
-                  : "Choose a repository from the list to continue."}
-              </p>
-
-              <button
-                type="button"
-                disabled={!selectedRepository}
-                className="mt-auto inline-flex w-full items-center justify-center rounded-[12px] px-4 py-3 text-sm font-semibold tracking-[0.01em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ca6ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1730] disabled:cursor-not-allowed disabled:border disabled:border-[#2c3a61] disabled:bg-[#34436c] disabled:text-[#95a3c9] enabled:bg-[#617de8] enabled:text-white enabled:hover:bg-[#6d87ec]"
+            <div className="flex flex-col gap-2.5">
+              <label
+                htmlFor="repository-name"
+                className="font-['Instrument_Sans',system-ui,sans-serif] text-[16px] leading-5 font-semibold text-[#F2F1F7]"
               >
-                Link
-              </button>
-            </aside>
+                Repository name
+              </label>
+              <input
+                id="repository-name"
+                type="text"
+                value={selectedRepository?.name ?? ""}
+                placeholder="Select a repository"
+                readOnly
+                className="h-11 w-full rounded-[9px] border border-white/8 bg-[#2A2732] px-[18px] font-['Instrument_Sans',system-ui,sans-serif] text-[16px] leading-6 font-medium text-[#F2F1F7] placeholder:text-[#8E8A99] focus:outline-none"
+              />
+            </div>
+
+            <button
+              type="button"
+              disabled={!selectedRepository}
+              className="flex h-14 w-full items-center justify-center rounded-[12px] bg-[#3320D8] font-['Instrument_Sans',system-ui,sans-serif] text-[16px] leading-6 font-medium tracking-[-0.01em] text-white/78 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ca6ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0813] enabled:hover:bg-[#3b27ec] disabled:cursor-not-allowed disabled:bg-[#2A2732] disabled:text-[#8E8A99]"
+            >
+              Link
+            </button>
           </div>
-        </div>
+        </section>
       </div>
     </main>
   );
