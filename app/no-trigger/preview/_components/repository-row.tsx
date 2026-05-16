@@ -15,8 +15,10 @@ export function RepositoryRow({ id, name, isSelected, onSelect }: RepositoryRowP
       role="radio"
       aria-checked={isSelected}
       onClick={() => onSelect(id)}
-      className={`[font-synthesis:none] flex min-h-[40px] w-full shrink-0 items-center gap-4 rounded-[8px] px-3 py-2.5 text-left antialiased transition-[background-color,color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-inset ${
-        isSelected ? "bg-[#202928]" : "bg-transparent hover:bg-[#27262B]"
+      className={`[font-synthesis:none] group flex min-h-[40px] w-full shrink-0 items-center gap-4 rounded-[8px] px-3 py-2.5 text-left antialiased transition-colors duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-inset ${
+        isSelected
+          ? "bg-[#202928] text-[#F2F1F7]"
+          : "bg-transparent text-[#DDD9E6] hover:bg-[#27262B] active:bg-[#202928]"
       }`}
       data-selected={isSelected}
     >
@@ -33,13 +35,13 @@ export function RepositoryRow({ id, name, isSelected, onSelect }: RepositoryRowP
         </svg>
       </div>
 
-      <div className="font-['Instrument_Sans',system-ui,sans-serif] grow basis-[0%] content-center text-sm/[21px] font-medium tracking-[-0.01em] text-[#DDD9E6]">
+      <div className="font-['Instrument_Sans',system-ui,sans-serif] grow basis-[0%] content-center text-sm/[21px] font-medium tracking-[-0.01em] text-current transition-colors duration-200 ease-out">
         {name}
       </div>
 
       <span
-        className={`flex size-4 shrink-0 items-center justify-center transition-opacity duration-200 ease-out ${
-          isSelected ? "opacity-100" : "opacity-0"
+        className={`ml-auto flex size-4 shrink-0 items-center justify-center transition-all duration-200 ease-out ${
+          isSelected ? "translate-x-0 scale-100 opacity-100" : "translate-x-0.5 scale-95 opacity-0"
         }`}
         aria-hidden="true"
       >
