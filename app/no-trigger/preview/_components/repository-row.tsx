@@ -15,8 +15,8 @@ export function RepositoryRow({ id, name, isSelected, onSelect }: RepositoryRowP
       role="radio"
       aria-checked={isSelected}
       onClick={() => onSelect(id)}
-      className={`[font-synthesis:none] flex min-h-[40px] w-full shrink-0 items-center gap-4 rounded-[8px] px-3 py-2.5 text-left antialiased transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-inset ${
-        isSelected ? "bg-[#1A2133]" : "bg-transparent hover:bg-[#2A2732]"
+      className={`[font-synthesis:none] flex min-h-[40px] w-full shrink-0 items-center gap-4 rounded-[8px] px-3 py-2.5 text-left antialiased transition-[background-color,color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-inset ${
+        isSelected ? "bg-[#202928]" : "bg-transparent hover:bg-[#27262B]"
       }`}
       data-selected={isSelected}
     >
@@ -36,6 +36,23 @@ export function RepositoryRow({ id, name, isSelected, onSelect }: RepositoryRowP
       <div className="font-['Instrument_Sans',system-ui,sans-serif] grow basis-[0%] content-center text-sm/[21px] font-medium tracking-[-0.01em] text-[#DDD9E6]">
         {name}
       </div>
+
+      <span
+        className={`flex size-4 shrink-0 items-center justify-center transition-opacity duration-200 ease-out ${
+          isSelected ? "opacity-100" : "opacity-0"
+        }`}
+        aria-hidden="true"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M3.5 8.5L6.5 11.5L12.5 5.5"
+            stroke="#6A8F67"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
     </button>
   );
 }
