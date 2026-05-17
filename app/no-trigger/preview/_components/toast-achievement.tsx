@@ -1,10 +1,83 @@
 "use client";
 
-export function ToastAchievement() {
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const TOAST_VISIBLE_DURATION_MS = 5000;
+const ENTRY_DURATION_MS = 420;
+const EXIT_DURATION_MS = 340;
+
+type ToastAchievementProps = {
+  onExitComplete?: () => void;
+};
+
+export function ToastAchievement({ onExitComplete }: ToastAchievementProps) {
+  const [phase, setPhase] = useState<"hidden" | "visible" | "exiting">("hidden");
+  const [isUnmounted, setIsUnmounted] = useState(false);
+  const [progressScale, setProgressScale] = useState(1);
+
+  const visibleTimerRef = useRef<number | null>(null);
+  const exitTimerRef = useRef<number | null>(null);
+
+  const startExit = useCallback(() => {
+    if (exitTimerRef.current !== null) {
+      return;
+    }
+
+    setPhase("exiting");
+
+    exitTimerRef.current = window.setTimeout(() => {
+      setIsUnmounted(true);
+      onExitComplete?.();
+    }, EXIT_DURATION_MS);
+  }, [onExitComplete]);
+
+  useEffect(() => {
+    const entryFrameId = window.requestAnimationFrame(() => {
+      setPhase("visible");
+      setProgressScale(0);
+
+      visibleTimerRef.current = window.setTimeout(() => {
+        startExit();
+      }, TOAST_VISIBLE_DURATION_MS);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(entryFrameId);
+
+      if (visibleTimerRef.current !== null) {
+        window.clearTimeout(visibleTimerRef.current);
+      }
+
+      if (exitTimerRef.current !== null) {
+        window.clearTimeout(exitTimerRef.current);
+      }
+    };
+  }, [startExit]);
+
+  const handleDismiss = () => {
+    if (visibleTimerRef.current !== null) {
+      window.clearTimeout(visibleTimerRef.current);
+      visibleTimerRef.current = null;
+    }
+
+    startExit();
+  };
+
+  if (isUnmounted) {
+    return null;
+  }
+
   return (
     <aside
       aria-live="polite"
-      className="[font-synthesis:none] flex w-[225px] flex-col gap-[10px] rounded-[8px] border border-[#303F44] bg-[linear-gradient(252.01deg,#252E37_2.54%,#2D3940_94.13%)] p-3 antialiased"
+      className={`[font-synthesis:none] flex w-[225px] flex-col gap-[10px] rounded-[8px] border border-[#303F44] bg-[linear-gradient(252.01deg,#252E37_2.54%,#2D3940_94.13%)] p-3 antialiased transition-[opacity,transform] will-change-transform ${
+        phase === "visible" ? "translate-x-0 opacity-100" : "translate-x-5 opacity-0"
+      }`}
+      style={{
+        transitionDuration: `${phase === "exiting" ? EXIT_DURATION_MS : ENTRY_DURATION_MS}ms`,
+        transitionTimingFunction:
+          phase === "exiting" ? "cubic-bezier(0.4, 0, 1, 1)" : "cubic-bezier(0.22, 1, 0.36, 1)",
+      }}
     >
       <div className="flex items-center gap-[9px]">
         <div className="flex h-[35px] w-[35px] shrink-0 items-center justify-center rounded-[6px] bg-[#174032]">
@@ -37,6 +110,7 @@ export function ToastAchievement() {
 
           <button
             type="button"
+            onClick={handleDismiss}
             aria-label="Dismiss achievement toast"
             className="flex h-3 w-3 shrink-0 items-center justify-center"
           >
@@ -54,8 +128,15 @@ export function ToastAchievement() {
         </div>
       </div>
 
-      <div className="flex h-[5px] w-[198px] shrink-0 rounded-[2px] bg-[#222732]">
-        <div className="h-[5px] w-[50px] shrink-0 rounded-[2px] bg-[#2AE06A]" />
+      <div className="flex h-[5px] w-[198px] shrink-0 overflow-hidden rounded-[2px] bg-[#222732]">
+        <div
+          className="h-[5px] w-full shrink-0 rounded-[2px] bg-[#2AE06A] will-change-transform"
+          style={{
+            transform: `scaleX(${progressScale})`,
+            transformOrigin: "right center",
+            transition: `transform ${TOAST_VISIBLE_DURATION_MS}ms linear`,
+          }}
+        />
       </div>
     </aside>
   );

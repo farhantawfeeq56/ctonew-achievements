@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { MainScreenNew } from "./main-screen-new";
+import { MainScreen } from "./main-screen";
 import { RepositoryRow } from "./repository-row";
 
 type RepositoryOption = {
@@ -255,7 +255,7 @@ export function LinkRepositoryExperience() {
               : "pointer-events-none translate-y-3 opacity-0"
           }`}
         >
-          <MainScreenNew repositoryLabel={repositoryLabel} />
+          <MainScreen repositoryLabel={repositoryLabel} />
         </div>
       </div>
     </main>
