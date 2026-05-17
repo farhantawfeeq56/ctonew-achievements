@@ -3,6 +3,10 @@
 const primaryNav = ["Agent Sessions", "Repositories", "Tasks"];
 const secondaryNav = ["MCPs", "Achievements", "Settings", "Help"];
 
+type MainScreenNewProps = {
+  repositoryLabel: string;
+};
+
 function DotIcon({ active = false }: { active?: boolean }) {
   return (
     <span
@@ -12,7 +16,7 @@ function DotIcon({ active = false }: { active?: boolean }) {
   );
 }
 
-export function MainScreenNew() {
+export function MainScreenNew({ repositoryLabel }: MainScreenNewProps) {
   return (
     <main className="[font-synthesis:none] flex min-h-screen overflow-hidden bg-[#0F1118] text-[#ECEEF4] antialiased">
       <aside className="flex w-[270px] shrink-0 flex-col border-r border-[#1A1D27] bg-[linear-gradient(180deg,#11141C_0%,#0F1118_100%)]">
@@ -21,20 +25,31 @@ export function MainScreenNew() {
             <h1 className="font-['Instrument_Sans',system-ui,sans-serif] text-2xl font-bold leading-[30px] tracking-[-0.07em] text-white">
               cto
             </h1>
-            <button className="flex size-6 items-center justify-center rounded-md border border-[#3A3F4F] text-xs text-[#D7D9E1]">
+            <button
+              type="button"
+              className="flex size-6 cursor-pointer items-center justify-center rounded-md border border-[#3A3F4F] text-xs text-[#D7D9E1] transition-all duration-150 hover:border-[#4B5368] hover:bg-white/[0.04] active:scale-[0.96]"
+            >
               ◧
             </button>
           </div>
-          <div className="flex h-[46px] items-center justify-between rounded-[10px] border border-[#232634] bg-[#111218] px-3">
+
+          <button
+            type="button"
+            className="flex h-[46px] cursor-pointer items-center justify-between rounded-[10px] border border-[#232634] bg-[#111218] px-3 text-left transition-all duration-150 hover:border-[#2F3443] hover:bg-[#14171F] active:scale-[0.995]"
+          >
             <div className="flex items-center gap-2.5">
               <DotIcon active />
               <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base font-semibold tracking-[-0.03em] text-[#F1F2F6]">
-                taro
+                {repositoryLabel}
               </span>
             </div>
             <span className="text-xs text-[#CDCCCD]">⌄</span>
-          </div>
-          <button className="flex h-[34px] items-center gap-2.5 rounded-lg border border-[#2A2D37] bg-[#1B1B21] px-2.5">
+          </button>
+
+          <button
+            type="button"
+            className="flex h-[34px] cursor-pointer items-center gap-2.5 rounded-lg border border-[#2A2D37] bg-[#1B1B21] px-2.5 transition-all duration-150 hover:border-[#383D4A] hover:bg-[#242530] active:scale-[0.985]"
+          >
             <DotIcon />
             <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base text-[#E8E9EF]">New Session</span>
           </button>
@@ -42,10 +57,14 @@ export function MainScreenNew() {
 
         <div className="mt-1 flex flex-col gap-0.5 px-2">
           {primaryNav.map((item) => (
-            <div key={item} className="flex h-10 items-center gap-3 px-2.5">
+            <button
+              key={item}
+              type="button"
+              className="flex h-10 cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
+            >
               <DotIcon />
               <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">{item}</span>
-            </div>
+            </button>
           ))}
         </div>
 
@@ -54,14 +73,21 @@ export function MainScreenNew() {
         <div className="flex flex-1 flex-col justify-between px-2 pb-4">
           <div className="mt-2.5 space-y-0.5">
             {secondaryNav.map((item) => (
-              <div key={item} className="flex h-10 items-center gap-3 px-2.5">
+              <button
+                key={item}
+                type="button"
+                className="flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
+              >
                 <DotIcon />
                 <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">{item}</span>
-              </div>
+              </button>
             ))}
           </div>
 
-          <div className="rounded-2xl border border-[#20232E] bg-[#11141B]">
+          <button
+            type="button"
+            className="rounded-2xl border border-[#20232E] bg-[#11141B] text-left transition-all duration-200 hover:border-[#2A2F3D] hover:bg-[#161A24] active:scale-[0.995]"
+          >
             <div className="flex items-center justify-between px-[18px] py-4">
               <div>
                 <div className="font-['Instrument_Sans',system-ui,sans-serif] text-lg font-semibold tracking-[-0.03em] text-[#EEF1F8]">
@@ -73,28 +99,46 @@ export function MainScreenNew() {
               </div>
               <span className="text-xs text-[#CDCCCD]">⌄</span>
             </div>
-          </div>
+          </button>
         </div>
       </aside>
 
       <section className="flex min-w-0 flex-1 flex-col bg-[linear-gradient(180deg,#1B1D27_0%,#171922_100%)]">
         <header className="flex h-11 items-center justify-between border-b border-white/[0.04] bg-[#12141CDB] px-6">
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2.5">
+            <button
+              type="button"
+              className="flex cursor-pointer items-center gap-2.5 rounded-lg px-1.5 py-1 transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.98]"
+            >
               <span className="flex size-3.5 items-center justify-center rounded-sm bg-[#1E2D20]">
                 <DotIcon active />
               </span>
               <span className="font-['Instrument_Sans',system-ui,sans-serif] text-[21px] font-semibold tracking-[-0.04em] text-[#EEF1F8]">
-                taro
+                {repositoryLabel}
               </span>
-            </div>
-            <span className="rounded-full bg-white/[0.06] px-2.5 py-1 font-['Instrument_Sans',system-ui,sans-serif] text-[13px] leading-4 text-[#8D93A4]">
+            </button>
+
+            <button
+              type="button"
+              className="cursor-pointer rounded-full bg-white/[0.06] px-2.5 py-1 font-['Instrument_Sans',system-ui,sans-serif] text-[13px] leading-4 text-[#8D93A4] transition-all duration-150 hover:bg-white/[0.11] active:scale-[0.97]"
+            >
               Project
-            </span>
+            </button>
           </div>
-          <div className="flex items-center gap-[18px] text-lg text-[#63697A]">
-            <span>⇄</span>
-            <span>＋</span>
+
+          <div className="flex items-center gap-[10px] text-lg text-[#63697A]">
+            <button
+              type="button"
+              className="flex size-7 cursor-pointer items-center justify-center rounded-md transition-all duration-150 hover:bg-white/[0.08] hover:text-[#939AAF] active:scale-[0.94]"
+            >
+              ⇄
+            </button>
+            <button
+              type="button"
+              className="flex size-7 cursor-pointer items-center justify-center rounded-md transition-all duration-150 hover:bg-white/[0.08] hover:text-[#939AAF] active:scale-[0.94]"
+            >
+              ＋
+            </button>
           </div>
         </header>
 
@@ -105,11 +149,24 @@ export function MainScreenNew() {
             </p>
             <div className="grow" />
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-[22px] text-sm text-[#D3D7E2]">
-                <span>1 repo ⌄</span>
-                <span>GPT 5.3 Codex ⌄</span>
+              <div className="flex items-center gap-[10px] text-sm text-[#D3D7E2]">
+                <button
+                  type="button"
+                  className="cursor-pointer rounded-lg px-2 py-1 transition-all duration-150 hover:bg-white/[0.07] active:scale-[0.97]"
+                >
+                  1 repo ⌄
+                </button>
+                <button
+                  type="button"
+                  className="cursor-pointer rounded-lg px-2 py-1 transition-all duration-150 hover:bg-white/[0.07] active:scale-[0.97]"
+                >
+                  GPT 5.3 Codex ⌄
+                </button>
               </div>
-              <button className="h-[38px] rounded-xl bg-[linear-gradient(180deg,#5A46F1_0%,#4D39E8_100%)] px-[14px] font-['Instrument_Sans',system-ui,sans-serif] text-[15px] font-semibold text-[#E9E4FF]">
+              <button
+                type="button"
+                className="h-[38px] cursor-pointer rounded-xl bg-[linear-gradient(180deg,#5A46F1_0%,#4D39E8_100%)] px-[14px] font-['Instrument_Sans',system-ui,sans-serif] text-[15px] font-semibold text-[#E9E4FF] transition-all duration-150 hover:brightness-110 active:scale-[0.97]"
+              >
                 Start session ↑
               </button>
             </div>
@@ -121,13 +178,16 @@ export function MainScreenNew() {
               ["Repositories", "1"],
               ["Tasks", "0"],
             ].map(([label, value]) => (
-              <div
+              <button
                 key={label}
-                className="flex h-[52px] items-center justify-between rounded-xl border border-[#48545F73] bg-[linear-gradient(90deg,#272A33_0%,#252933_100%)] px-4"
+                type="button"
+                className="flex h-[52px] cursor-pointer items-center justify-between rounded-xl border border-[#48545F73] bg-[linear-gradient(90deg,#272A33_0%,#252933_100%)] px-4 text-left transition-all duration-150 hover:border-[#6A7488A3] hover:bg-[linear-gradient(90deg,#2E323D_0%,#2A2E39_100%)] active:scale-[0.985]"
               >
                 <span className="font-['Instrument_Sans',system-ui,sans-serif] text-sm text-[#D3D8E4]">{label}</span>
-                <span className="font-['Instrument_Sans',system-ui,sans-serif] text-lg font-bold text-[#F4F5F9]">{value}</span>
-              </div>
+                <span className="font-['Instrument_Sans',system-ui,sans-serif] text-lg font-bold text-[#F4F5F9]">
+                  {value}
+                </span>
+              </button>
             ))}
           </div>
 
