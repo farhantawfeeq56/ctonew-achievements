@@ -55,6 +55,24 @@ export default function ComponentPlaygroundPage() {
                 <AchievementsSidebar state="attention-seeking" />
               </div>
             </div>
+
+            <div className="rounded-xl border border-[#202432] bg-[linear-gradient(180deg,#11141C_0%,#0F1118_100%)] p-3 text-[#ECEEF4]">
+              <p className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#8D93A4]">
+                attention-neglecting
+              </p>
+              <div className="mt-2 rounded-lg border border-white/[0.06] bg-[#121622] p-1.5">
+                <AchievementsSidebar state="attention-neglecting" />
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-[#202432] bg-[linear-gradient(180deg,#11141C_0%,#0F1118_100%)] p-3 text-[#ECEEF4]">
+              <p className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#8D93A4]">
+                attention-neglecting-0
+              </p>
+              <div className="mt-2 rounded-lg border border-white/[0.06] bg-[#121622] p-1.5">
+                <AchievementsSidebar state="attention-neglecting-0" />
+              </div>
+            </div>
           </div>
         </section>
 
