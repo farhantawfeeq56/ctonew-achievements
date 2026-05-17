@@ -255,7 +255,7 @@ export function LinkRepositoryExperience() {
               : "pointer-events-none translate-y-3 opacity-0"
           }`}
         >
-          <MainScreen repositoryLabel={repositoryLabel} />
+          <MainScreen repositoryLabel={repositoryLabel} isVisible={isMainScreenVisible} />
         </div>
       </div>
     </main>
