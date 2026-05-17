@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   description: "A local workspace for quickly testing and iterating on UI components.",
 };
 
+const achievementsSidebarStates = [
+  "default",
+  "attention-seeking",
+  "attention-neglecting",
+  "attention-neglecting-0",
+] as const;
+
 export default function ComponentPlaygroundPage() {
   return (
     <main className="min-h-screen bg-[#f3f1ed] px-4 py-10 sm:px-8 sm:py-14">
@@ -38,41 +45,19 @@ export default function ComponentPlaygroundPage() {
           </p>
 
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-[#202432] bg-[linear-gradient(180deg,#11141C_0%,#0F1118_100%)] p-3 text-[#ECEEF4]">
-              <p className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#8D93A4]">
-                default
-              </p>
-              <div className="mt-2 rounded-lg border border-white/[0.06] bg-[#121622] p-1.5">
-                <AchievementsSidebar state="default" />
+            {achievementsSidebarStates.map((state) => (
+              <div
+                key={state}
+                className="rounded-xl border border-[#202432] bg-[linear-gradient(180deg,#11141C_0%,#0F1118_100%)] p-3 text-[#ECEEF4]"
+              >
+                <p className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#8D93A4]">
+                  {state}
+                </p>
+                <div className="mt-2 rounded-lg border border-white/[0.06] bg-[#121622] p-1.5">
+                  <AchievementsSidebar state={state} />
+                </div>
               </div>
-            </div>
-
-            <div className="rounded-xl border border-[#202432] bg-[linear-gradient(180deg,#11141C_0%,#0F1118_100%)] p-3 text-[#ECEEF4]">
-              <p className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#8D93A4]">
-                attention-seeking
-              </p>
-              <div className="mt-2 rounded-lg border border-white/[0.06] bg-[#121622] p-1.5">
-                <AchievementsSidebar state="attention-seeking" />
-              </div>
-            </div>
-
-            <div className="rounded-xl border border-[#202432] bg-[linear-gradient(180deg,#11141C_0%,#0F1118_100%)] p-3 text-[#ECEEF4]">
-              <p className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#8D93A4]">
-                attention-neglecting
-              </p>
-              <div className="mt-2 rounded-lg border border-white/[0.06] bg-[#121622] p-1.5">
-                <AchievementsSidebar state="attention-neglecting" />
-              </div>
-            </div>
-
-            <div className="rounded-xl border border-[#202432] bg-[linear-gradient(180deg,#11141C_0%,#0F1118_100%)] p-3 text-[#ECEEF4]">
-              <p className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#8D93A4]">
-                attention-neglecting-0
-              </p>
-              <div className="mt-2 rounded-lg border border-white/[0.06] bg-[#121622] p-1.5">
-                <AchievementsSidebar state="attention-neglecting-0" />
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
