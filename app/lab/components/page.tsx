@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { AchievementsSidebar } from "../../no-trigger/preview/_components/achievements-sidebar";
+import { ToastAchievement } from "../../no-trigger/preview/_components/toast-achievement";
 
 export const metadata: Metadata = {
   title: "Component Playground",
@@ -58,6 +59,19 @@ export default function ComponentPlaygroundPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="rounded-xl border border-[#d9d9d9] bg-[#faf9f7] p-4 sm:p-5">
+          <h2 className="text-base font-semibold text-[#1c1c1c]">ToastAchievement</h2>
+          <p className="mt-1 text-sm text-[#5f5f5f]">
+            Preview of the achievement toast used in the no-trigger repository linking flow.
+          </p>
+
+          <div className="mt-4 rounded-xl border border-[#202432] bg-[linear-gradient(180deg,#11141C_0%,#0F1118_100%)] p-3 text-[#ECEEF4]">
+            <div className="rounded-lg border border-white/[0.06] bg-[#121622] p-3">
+              <ToastAchievement />
+            </div>
           </div>
         </section>
 
