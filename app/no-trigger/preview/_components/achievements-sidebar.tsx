@@ -14,8 +14,11 @@ export function AchievementsSidebar({ state = "default" }: AchievementsSidebarPr
     >
       {state === "attention-seeking" ? (
         <div className="[font-synthesis:none] flex w-full items-center antialiased p-0">
-          <div className="font-['Instrument_Sans',system-ui,sans-serif] text-[#ECEEF4] text-base/5">
-            Achievements
+          <div className="flex items-center gap-3">
+            <Image src="/icons/achievements.svg" alt="" width={12} height={12} />
+            <div className="font-['Instrument_Sans',system-ui,sans-serif] text-[#ECEEF4] text-base/5">
+              Achievements
+            </div>
           </div>
           <div className="ml-auto flex items-start gap-2 p-0">
             <div className="text-center font-['Instrument_Sans',system-ui,sans-serif] font-semibold text-[#6ECA78] text-xs/4">
