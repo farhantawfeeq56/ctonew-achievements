@@ -1,20 +1,10 @@
 "use client";
 
-const primaryNav = ["Agent Sessions", "Repositories", "Tasks"];
-const secondaryNav = ["MCPs", "Achievements", "Settings", "Help"];
+import Image from "next/image";
 
 type MainScreenNewProps = {
   repositoryLabel: string;
 };
-
-function DotIcon({ active = false }: { active?: boolean }) {
-  return (
-    <span
-      className={`inline-block size-2.5 rounded-sm ${active ? "bg-[#6ECA78]" : "bg-[#CDCCCD]"}`}
-      aria-hidden="true"
-    />
-  );
-}
 
 export function MainScreenNew({ repositoryLabel }: MainScreenNewProps) {
   return (
@@ -38,50 +28,81 @@ export function MainScreenNew({ repositoryLabel }: MainScreenNewProps) {
             className="flex h-[46px] cursor-pointer items-center justify-between rounded-[10px] border border-[#232634] bg-[#111218] px-3 text-left transition-all duration-150 hover:border-[#2F3443] hover:bg-[#14171F] active:scale-[0.995]"
           >
             <div className="flex items-center gap-2.5">
-              <DotIcon active />
+              <Image src="/icons/menu-bar.svg" alt="" width={12} height={12} />
               <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base font-semibold tracking-[-0.03em] text-[#F1F2F6]">
                 {repositoryLabel}
               </span>
             </div>
-            <span className="text-xs text-[#CDCCCD]">⌄</span>
+            <span className="text-xs text-[#CDCCCD]">
+              <Image src="/icons/below-arrow.svg" alt="" width={12} height={12} />
+            </span>
           </button>
 
           <button
             type="button"
             className="flex h-[34px] cursor-pointer items-center gap-2.5 rounded-lg border border-[#2A2D37] bg-[#1B1B21] px-2.5 transition-all duration-150 hover:border-[#383D4A] hover:bg-[#242530] active:scale-[0.985]"
           >
-            <DotIcon />
+            <Image src="/icons/new-session.svg" alt="" width={12} height={12} />
             <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base text-[#E8E9EF]">New Session</span>
           </button>
         </div>
 
         <div className="mt-1 flex flex-col gap-0.5 px-2">
-          {primaryNav.map((item) => (
-            <button
-              key={item}
-              type="button"
-              className="flex h-10 cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
-            >
-              <DotIcon />
-              <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">{item}</span>
-            </button>
-          ))}
+          <button
+            type="button"
+            className="flex h-10 cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
+          >
+            <Image src="/icons/agent-session.svg" alt="" width={12} height={12} />
+            <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">Agent Sessions</span>
+          </button>
+          <button
+            type="button"
+            className="flex h-10 cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
+          >
+            <Image src="/icons/repo.svg" alt="" width={12} height={12} />
+            <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">Repositories</span>
+          </button>
+          <button
+            type="button"
+            className="flex h-10 cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
+          >
+            <Image src="/icons/tasks.svg" alt="" width={12} height={12} />
+            <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">Tasks</span>
+          </button>
         </div>
 
         <div className="mt-2 h-px bg-[#181B25]" />
 
         <div className="flex flex-1 flex-col justify-between px-2 pb-4">
           <div className="mt-2.5 space-y-0.5">
-            {secondaryNav.map((item) => (
-              <button
-                key={item}
-                type="button"
-                className="flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
-              >
-                <DotIcon />
-                <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">{item}</span>
-              </button>
-            ))}
+            <button
+              type="button"
+              className="flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
+            >
+              <Image src="/icons/mcps.svg" alt="" width={12} height={12} />
+              <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">MCPs</span>
+            </button>
+            <button
+              type="button"
+              className="flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
+            >
+              <Image src="/icons/achievements.svg" alt="" width={12} height={12} />
+              <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">Achievements</span>
+            </button>
+            <button
+              type="button"
+              className="flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
+            >
+              <Image src="/icons/settings.svg" alt="" width={12} height={12} />
+              <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">Settings</span>
+            </button>
+            <button
+              type="button"
+              className="flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
+            >
+              <Image src="/icons/support.svg" alt="" width={12} height={12} />
+              <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">Support</span>
+            </button>
           </div>
 
           <button
@@ -97,7 +118,9 @@ export function MainScreenNew({ repositoryLabel }: MainScreenNewProps) {
                   webdesignbyft@gmail.com
                 </div>
               </div>
-              <span className="text-xs text-[#CDCCCD]">⌄</span>
+              <span className="text-xs text-[#CDCCCD]">
+                <Image src="/icons/below-arrow.svg" alt="" width={12} height={12} />
+              </span>
             </div>
           </button>
         </div>
@@ -111,7 +134,7 @@ export function MainScreenNew({ repositoryLabel }: MainScreenNewProps) {
               className="flex cursor-pointer items-center gap-2.5 rounded-lg px-1.5 py-1 transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.98]"
             >
               <span className="flex size-3.5 items-center justify-center rounded-sm bg-[#1E2D20]">
-                <DotIcon active />
+                <Image src="/icons/menu-bar.svg" alt="" width={12} height={12} />
               </span>
               <span className="font-['Instrument_Sans',system-ui,sans-serif] text-[21px] font-semibold tracking-[-0.04em] text-[#EEF1F8]">
                 {repositoryLabel}
@@ -154,13 +177,13 @@ export function MainScreenNew({ repositoryLabel }: MainScreenNewProps) {
                   type="button"
                   className="cursor-pointer rounded-lg px-2 py-1 transition-all duration-150 hover:bg-white/[0.07] active:scale-[0.97]"
                 >
-                  1 repo ⌄
+                  1 repo <Image src="/icons/below-arrow.svg" alt="" width={12} height={12} />
                 </button>
                 <button
                   type="button"
                   className="cursor-pointer rounded-lg px-2 py-1 transition-all duration-150 hover:bg-white/[0.07] active:scale-[0.97]"
                 >
-                  GPT 5.3 Codex ⌄
+                  GPT 5.3 Codex <Image src="/icons/below-arrow.svg" alt="" width={12} height={12} />
                 </button>
               </div>
               <button
@@ -200,7 +223,7 @@ export function MainScreenNew({ repositoryLabel }: MainScreenNewProps) {
             </p>
             <div className="mt-4 flex flex-col items-center gap-2.5 pb-1">
               <span className="flex size-[38px] items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.08]">
-                <DotIcon />
+                <Image src="/icons/agent-session.svg" alt="" width={12} height={12} />
               </span>
               <span className="font-['Instrument_Sans',system-ui,sans-serif] text-sm font-semibold text-[#E3E6EE]">
                 No recent sessions
