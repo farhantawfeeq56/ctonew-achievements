@@ -40,12 +40,14 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
 
   const handleAchievementsClick = () => {
     setIsShowingAchievements(true);
+    setIsToastMounted(false);
   };
 
   const handleReturn = () => {
     setIsShowingAchievements(false);
     setSidebarState("attention-neglecting");
     setToastEverExited(true);
+    setIsToastMounted(false);
   };
 
   if (isShowingAchievements) {
