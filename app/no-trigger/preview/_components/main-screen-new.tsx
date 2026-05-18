@@ -1,13 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { AchievementsSidebar } from "./achievements-sidebar";
+import { AchievementsSidebar, type AchievementsSidebarState } from "./achievements-sidebar";
 
 type MainScreenNewProps = {
   repositoryLabel: string;
+  achievementsSidebarState: AchievementsSidebarState;
+  onAchievementsClick: () => void;
 };
 
-export function MainScreenNew({ repositoryLabel }: MainScreenNewProps) {
+export function MainScreenNew({
+  repositoryLabel,
+  achievementsSidebarState,
+  onAchievementsClick,
+}: MainScreenNewProps) {
   return (
     <main className="[font-synthesis:none] flex min-h-screen overflow-hidden bg-[#0F1118] text-[#ECEEF4] antialiased">
       <aside className="flex w-[270px] shrink-0 flex-col border-r border-[#1A1D27] bg-[linear-gradient(180deg,#11141C_0%,#0F1118_100%)]">
@@ -83,7 +89,7 @@ export function MainScreenNew({ repositoryLabel }: MainScreenNewProps) {
               <Image src="/icons/mcps.svg" alt="" width={12} height={12} />
               <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">MCPs</span>
             </button>
-            <AchievementsSidebar state="attention-neglecting-0" />
+            <AchievementsSidebar state={achievementsSidebarState} onClick={onAchievementsClick} />
             <button
               type="button"
               className="flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
