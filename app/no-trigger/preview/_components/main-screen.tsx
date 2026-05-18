@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { MainScreenNew } from "./main-screen-new";
 import { ToastAchievement } from "./toast-achievement";
 import type { AchievementsSidebarState } from "./achievements-sidebar";
@@ -32,11 +32,11 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
     };
   }, [isVisible, toastEverExited]);
 
-  const handleToastExit = () => {
+  const handleToastExit = useCallback(() => {
     setIsToastMounted(false);
     setSidebarState("attention-seeking");
     setToastEverExited(true);
-  };
+  }, []);
 
   const handleAchievementsClick = () => {
     setIsShowingAchievements(true);

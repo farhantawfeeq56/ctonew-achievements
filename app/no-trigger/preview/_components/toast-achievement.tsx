@@ -57,16 +57,23 @@ export function ToastAchievement({ onExitComplete }: ToastAchievementProps) {
   }, [startExit]);
 
   useEffect(() => {
+    let secondFrameId: number | null = null;
     const entryFrameId = window.requestAnimationFrame(() => {
-      setPhase("visible");
+      // Second frame ensures the browser has painted the initial "hidden" state
+      secondFrameId = window.requestAnimationFrame(() => {
+        setPhase("visible");
 
-      entryTimerRef.current = window.setTimeout(() => {
-        startProgress();
-      }, ENTRY_DURATION_MS);
+        entryTimerRef.current = window.setTimeout(() => {
+          startProgress();
+        }, ENTRY_DURATION_MS);
+      });
     });
 
     return () => {
       window.cancelAnimationFrame(entryFrameId);
+      if (secondFrameId !== null) {
+        window.cancelAnimationFrame(secondFrameId);
+      }
 
       if (entryTimerRef.current !== null) {
         window.clearTimeout(entryTimerRef.current);
