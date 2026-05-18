@@ -58,8 +58,10 @@ export function ToastAchievement({ onExitComplete }: ToastAchievementProps) {
 
   useEffect(() => {
     let secondFrameId: number | null = null;
+
+    // Use double requestAnimationFrame to ensure the browser has painted the 'hidden' state
+    // before we trigger the transition to 'visible'.
     const entryFrameId = window.requestAnimationFrame(() => {
-      // Second frame ensures the browser has painted the initial "hidden" state
       secondFrameId = window.requestAnimationFrame(() => {
         setPhase("visible");
 
@@ -99,15 +101,13 @@ export function ToastAchievement({ onExitComplete }: ToastAchievementProps) {
   return (
     <aside
       aria-live="polite"
-      className={`[font-synthesis:none] flex w-[225px] flex-col gap-[10px] rounded-[8px] border border-[#303F44] bg-[linear-gradient(252.01deg,#252E37_2.54%,#2D3940_94.13%)] p-3 antialiased transition-[transform,opacity] will-change-[transform,opacity] ${
+      className={`[font-synthesis:none] flex w-[225px] flex-col gap-[10px] rounded-[8px] border border-[#303F44] bg-[linear-gradient(252.01deg,#252E37_2.54%,#2D3940_94.13%)] p-3 antialiased transition-all will-change-[transform,opacity] ${
         isVisible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+      } ${
+        isExiting
+          ? "duration-[250ms] ease-[cubic-bezier(0.4,0,1,1)]"
+          : "duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
       }`}
-      style={{
-        transitionDuration: `${isExiting ? EXIT_DURATION_MS : ENTRY_DURATION_MS}ms`,
-        transitionTimingFunction: isExiting
-          ? "cubic-bezier(0.4, 0, 1, 1)"
-          : "cubic-bezier(0.22, 1, 0.36, 1)",
-      }}
     >
       <div className="flex items-center gap-[9px]">
         <div className="flex h-[35px] w-[35px] shrink-0 items-center justify-center rounded-[6px] bg-[#174032]">
@@ -160,11 +160,10 @@ export function ToastAchievement({ onExitComplete }: ToastAchievementProps) {
 
       <div className="flex h-[5px] w-[198px] shrink-0 overflow-hidden rounded-[2px] bg-[#222732]">
         <div
-          className="h-[5px] w-full shrink-0 rounded-[2px] bg-[#2AE06A] will-change-transform"
+          className="h-[5px] w-full shrink-0 rounded-[2px] bg-[#2AE06A] transition-transform duration-[5000ms] ease-linear will-change-transform"
           style={{
             transform: `scaleX(${progressScale})`,
             transformOrigin: "left center",
-            transition: `transform ${TOAST_PROGRESS_DURATION_MS}ms linear`,
           }}
         />
       </div>
