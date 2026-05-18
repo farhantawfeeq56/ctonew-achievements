@@ -70,7 +70,10 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
       {isToastMounted ? (
         <div className="pointer-events-none absolute right-4 top-4 z-30 sm:right-6 sm:top-6">
           <div className="pointer-events-auto">
-            <ToastAchievement onExitComplete={handleToastExit} />
+            <ToastAchievement
+              onExitComplete={handleToastExit}
+              onClick={handleAchievementsClick}
+            />
           </div>
         </div>
       ) : null}

@@ -8,11 +8,12 @@ const EXIT_DURATION_MS = 250;
 
 type ToastAchievementProps = {
   onExitComplete?: () => void;
+  onClick?: () => void;
 };
 
 type ToastPhase = "hidden" | "visible" | "exiting";
 
-export function ToastAchievement({ onExitComplete }: ToastAchievementProps) {
+export function ToastAchievement({ onExitComplete, onClick }: ToastAchievementProps) {
   const [phase, setPhase] = useState<ToastPhase>("hidden");
   const [isUnmounted, setIsUnmounted] = useState(false);
   const [progressScale, setProgressScale] = useState(1);
@@ -106,7 +107,9 @@ export function ToastAchievement({ onExitComplete }: ToastAchievementProps) {
   return (
     <aside
       aria-live="polite"
-      className={`[font-synthesis:none] flex w-fit flex-col gap-[10px] rounded-[8px] border border-[#303F44] bg-[linear-gradient(252.01deg,#252E37_2.54%,#2D3940_94.13%)] p-3 antialiased transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity] ${
+      role="button"
+      onClick={onClick}
+      className={`[font-synthesis:none] flex w-fit cursor-pointer flex-col gap-[10px] rounded-[8px] border border-[#303F44] bg-[linear-gradient(252.01deg,#252E37_2.54%,#2D3940_94.13%)] p-3 antialiased transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity] ${
         isVisible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
       } ${
         isExiting
@@ -145,9 +148,12 @@ export function ToastAchievement({ onExitComplete }: ToastAchievementProps) {
 
           <button
             type="button"
-            onClick={startExit}
+            onClick={(e) => {
+              e.stopPropagation();
+              startExit();
+            }}
             aria-label="Dismiss achievement toast"
-            className="flex h-3 w-3 shrink-0 items-center justify-center"
+            className="flex h-3 w-3 shrink-0 items-center justify-center cursor-pointer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

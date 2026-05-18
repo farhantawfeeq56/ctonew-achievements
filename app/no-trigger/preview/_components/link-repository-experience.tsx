@@ -230,7 +230,7 @@ export function LinkRepositoryExperience() {
                   type="button"
                   onClick={handleLinkRepository}
                   disabled={!selectedRepository || isLinking}
-                  className="flex h-14 w-full items-center justify-center rounded-[12px] bg-[#3320D8] font-['Instrument_Sans',system-ui,sans-serif] text-[16px] leading-6 font-medium tracking-[-0.01em] text-white/78 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ca6ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0813] enabled:hover:bg-[#3b27ec] enabled:active:scale-[0.99] disabled:cursor-not-allowed disabled:bg-[#2A2732] disabled:text-[#8E8A99]"
+                  className="flex h-14 w-full items-center justify-center rounded-[12px] bg-[#3320D8] font-['Instrument_Sans',system-ui,sans-serif] text-[16px] leading-6 font-medium tracking-[-0.01em] text-white/78 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ca6ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0813] enabled:cursor-pointer enabled:hover:bg-[#3b27ec] enabled:active:scale-[0.99] disabled:cursor-not-allowed disabled:bg-[#2A2732] disabled:text-[#8E8A99]"
                 >
                   <span className="inline-flex items-center gap-2">
                     {isLinking ? (
