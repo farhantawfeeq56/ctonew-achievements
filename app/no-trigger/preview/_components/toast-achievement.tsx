@@ -106,11 +106,11 @@ export function ToastAchievement({ onExitComplete }: ToastAchievementProps) {
   return (
     <aside
       aria-live="polite"
-      className={`[font-synthesis:none] flex w-[225px] flex-col gap-[10px] rounded-[8px] border border-[#303F44] bg-[linear-gradient(252.01deg,#252E37_2.54%,#2D3940_94.13%)] p-3 antialiased transition-all duration-300 ease-out will-change-[transform,opacity] ${
+      className={`[font-synthesis:none] flex w-fit flex-col gap-[10px] rounded-[8px] border border-[#303F44] bg-[linear-gradient(252.01deg,#252E37_2.54%,#2D3940_94.13%)] p-3 antialiased transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity] ${
         isVisible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
       } ${
         isExiting
-          ? "duration-200 ease-in"
+          ? "duration-[250ms] ease-in"
           : ""
       }`}
     >
@@ -163,7 +163,7 @@ export function ToastAchievement({ onExitComplete }: ToastAchievementProps) {
         </div>
       </div>
 
-      <div className="flex h-[5px] w-[198px] shrink-0 overflow-hidden rounded-[2px] bg-[#222732]">
+      <div className="flex h-[5px] w-full shrink-0 overflow-hidden rounded-[2px] bg-[#222732]">
         <div
           className={`h-[5px] w-full shrink-0 rounded-[2px] bg-[#2AE06A] transition-transform duration-[5000ms] ease-linear will-change-transform origin-left ${
             progressScale === 0 ? "scale-x-0" : "scale-x-100"
