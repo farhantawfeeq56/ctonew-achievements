@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type AchievementsSidebarState =
+export type AchievementsSidebarState =
   | "default"
   | "attention-seeking"
   | "attention-neglecting"
@@ -8,9 +8,10 @@ type AchievementsSidebarState =
 
 type AchievementsSidebarProps = {
   state?: AchievementsSidebarState;
+  onClick?: () => void;
 };
 
-export function AchievementsSidebar({ state = "default" }: AchievementsSidebarProps) {
+export function AchievementsSidebar({ state = "default", onClick }: AchievementsSidebarProps) {
   const isAttentionSeeking = state === "attention-seeking";
   const isAttentionNeglecting =
     state === "attention-neglecting" || state === "attention-neglecting-0";
@@ -19,6 +20,7 @@ export function AchievementsSidebar({ state = "default" }: AchievementsSidebarPr
   return (
     <button
       type="button"
+      onClick={onClick}
       className="flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
     >
       {isAttentionState ? (
