@@ -1,53 +1,24 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { MainScreenNew } from "./main-screen-new";
-import { ToastAchievement } from "./toast-achievement";
 import type { AchievementsSidebarState } from "./achievements-sidebar";
-
-const TOAST_ENTRY_DELAY_MS = 500;
 
 type MainScreenProps = {
   repositoryLabel: string;
-  isVisible: boolean;
 };
 
-export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
-  const [isToastMounted, setIsToastMounted] = useState(false);
+export function MainScreen({ repositoryLabel }: MainScreenProps) {
   const [sidebarState, setSidebarState] = useState<AchievementsSidebarState>("attention-neglecting");
   const [isShowingAchievements, setIsShowingAchievements] = useState(false);
-  const [toastEverExited, setToastEverExited] = useState(false);
-
-  useEffect(() => {
-    if (!isVisible || toastEverExited) {
-      return;
-    }
-
-    const entryTimerId = window.setTimeout(() => {
-      setIsToastMounted(true);
-    }, TOAST_ENTRY_DELAY_MS);
-
-    return () => {
-      window.clearTimeout(entryTimerId);
-    };
-  }, [isVisible, toastEverExited]);
-
-  const handleToastExit = useCallback(() => {
-    setIsToastMounted(false);
-    setSidebarState("attention-seeking");
-    setToastEverExited(true);
-  }, []);
 
   const handleAchievementsClick = () => {
     setIsShowingAchievements(true);
-    setIsToastMounted(false);
   };
 
   const handleReturn = () => {
     setIsShowingAchievements(false);
     setSidebarState("attention-neglecting");
-    setToastEverExited(true);
-    setIsToastMounted(false);
   };
 
   if (isShowingAchievements) {
@@ -69,17 +40,6 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
 
   return (
     <div className="relative">
-      {isToastMounted ? (
-        <div className="pointer-events-none absolute right-4 top-4 z-30 sm:right-6 sm:top-6">
-          <div className="pointer-events-auto">
-            <ToastAchievement
-              onExitComplete={handleToastExit}
-              onClick={handleAchievementsClick}
-            />
-          </div>
-        </div>
-      ) : null}
-
       <MainScreenNew
         repositoryLabel={repositoryLabel}
         achievementsSidebarState={sidebarState}
