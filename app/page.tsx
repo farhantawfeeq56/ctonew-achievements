@@ -25,14 +25,6 @@ const achievementCards: AchievementCardData[] = [
     href: "/hidden-secrets",
     badgeClassName: "bg-[#4c956c]",
   },
-  {
-    number: "3",
-    title: "No Direction",
-    description:
-      "Even when users notice the achievements, they don’t know what to do next. Awareness doesn’t turn into action.",
-    href: "/no-direction",
-    badgeClassName: "bg-[#5dac7f]",
-  },
 ];
 
 function AchievementCard({
