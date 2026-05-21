@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   description: "A local workspace for quickly testing and iterating on UI components.",
 };
 
-const achievementsSidebarStates = [
-  "default",
-  "attention-seeking",
-  "attention-neglecting",
-  "attention-neglecting-0",
+const achievementsSidebarVariants = [
+  { state: "default", label: "default" },
+  { state: "attention-seeking", label: "attention-seeking (1/28)", count: 1 },
+  { state: "attention-neglecting", label: "attention-neglecting (0/28)", count: 0 },
+  { state: "attention-neglecting", label: "attention-neglecting (1/28)", count: 1 },
 ] as const;
 
 export default function ComponentPlaygroundPage() {
@@ -46,16 +46,19 @@ export default function ComponentPlaygroundPage() {
           </p>
 
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            {achievementsSidebarStates.map((state) => (
+            {achievementsSidebarVariants.map((variant, index) => (
               <div
-                key={state}
+                key={`${variant.state}-${index}`}
                 className="rounded-xl border border-[#202432] bg-[linear-gradient(180deg,#11141C_0%,#0F1118_100%)] p-3 text-[#ECEEF4]"
               >
                 <p className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#8D93A4]">
-                  {state}
+                  {variant.label}
                 </p>
                 <div className="mt-2 rounded-lg border border-white/[0.06] bg-[#121622] p-1.5">
-                  <AchievementsSidebar state={state} />
+                  <AchievementsSidebar 
+                    state={variant.state} 
+                    count={"count" in variant ? variant.count : undefined} 
+                  />
                 </div>
               </div>
             ))}

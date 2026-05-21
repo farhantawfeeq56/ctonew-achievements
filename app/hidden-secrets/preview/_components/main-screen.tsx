@@ -10,6 +10,7 @@ type MainScreenProps = {
 
 export function MainScreen({ repositoryLabel }: MainScreenProps) {
   const [sidebarState, setSidebarState] = useState<AchievementsSidebarState>("attention-neglecting");
+  const [achievementsCount, setAchievementsCount] = useState(1);
   const [isShowingAchievements, setIsShowingAchievements] = useState(false);
 
   const handleAchievementsClick = () => {
@@ -19,6 +20,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
   const handleReturn = () => {
     setIsShowingAchievements(false);
     setSidebarState("attention-neglecting");
+    setAchievementsCount(1);
   };
 
   if (isShowingAchievements) {
@@ -43,6 +45,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
       <MainScreenNew
         repositoryLabel={repositoryLabel}
         achievementsSidebarState={sidebarState}
+        achievementsCount={achievementsCount}
         onAchievementsClick={handleAchievementsClick}
       />
     </div>

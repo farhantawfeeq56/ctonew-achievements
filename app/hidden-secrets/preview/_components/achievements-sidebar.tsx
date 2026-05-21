@@ -3,18 +3,21 @@ import Image from "next/image";
 export type AchievementsSidebarState =
   | "default"
   | "attention-seeking"
-  | "attention-neglecting"
-  | "attention-neglecting-0";
+  | "attention-neglecting";
 
 type AchievementsSidebarProps = {
   state?: AchievementsSidebarState;
+  count?: number;
   onClick?: () => void;
 };
 
-export function AchievementsSidebar({ state = "default", onClick }: AchievementsSidebarProps) {
+export function AchievementsSidebar({ 
+  state = "default", 
+  count = 1, 
+  onClick 
+}: AchievementsSidebarProps) {
   const isAttentionSeeking = state === "attention-seeking";
-  const isAttentionNeglecting =
-    state === "attention-neglecting" || state === "attention-neglecting-0";
+  const isAttentionNeglecting = state === "attention-neglecting";
   const isAttentionState = isAttentionSeeking || isAttentionNeglecting;
 
   return (
@@ -42,7 +45,7 @@ export function AchievementsSidebar({ state = "default", onClick }: Achievements
                 isAttentionSeeking ? "text-[#6ECA78]" : "text-white/50"
               }`}
             >
-              {state === "attention-neglecting-0" ? "0/28" : "1/28"}
+              {count}/28
             </div>
           </div>
         </div>

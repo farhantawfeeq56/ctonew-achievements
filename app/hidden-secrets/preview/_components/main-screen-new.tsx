@@ -6,12 +6,14 @@ import { AchievementsSidebar, type AchievementsSidebarState } from "./achievemen
 type MainScreenNewProps = {
   repositoryLabel: string;
   achievementsSidebarState: AchievementsSidebarState;
+  achievementsCount?: number;
   onAchievementsClick: () => void;
 };
 
 export function MainScreenNew({
   repositoryLabel,
   achievementsSidebarState,
+  achievementsCount,
   onAchievementsClick,
 }: MainScreenNewProps) {
   return (
@@ -89,7 +91,11 @@ export function MainScreenNew({
               <Image src="/icons/mcps.svg" alt="" width={12} height={12} />
               <span className="font-['Instrument_Sans',system-ui,sans-serif] text-base leading-5">MCPs</span>
             </button>
-            <AchievementsSidebar state={achievementsSidebarState} onClick={onAchievementsClick} />
+            <AchievementsSidebar 
+              state={achievementsSidebarState} 
+              count={achievementsCount} 
+              onClick={onAchievementsClick} 
+            />
             <button
               type="button"
               className="flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
