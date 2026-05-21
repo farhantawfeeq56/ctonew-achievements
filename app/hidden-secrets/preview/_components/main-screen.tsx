@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MainScreenNew } from "./main-screen-new";
 import type { AchievementsSidebarState } from "./achievements-sidebar";
+import { ToastDailyLimit } from "./toast-daily-limit";
 
 type MainScreenProps = {
   repositoryLabel: string;
@@ -12,9 +13,19 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
   const [sidebarState, setSidebarState] = useState<AchievementsSidebarState>("attention-neglecting");
   const [achievementsCount, setAchievementsCount] = useState(1);
   const [isShowingAchievements, setIsShowingAchievements] = useState(false);
+  const [isToastMounted, setIsToastMounted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsToastMounted(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleAchievementsClick = () => {
     setIsShowingAchievements(true);
+    setIsToastMounted(false);
   };
 
   const handleReturn = () => {
@@ -42,6 +53,13 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
 
   return (
     <div className="relative">
+      {isToastMounted && (
+        <div className="pointer-events-none absolute right-4 top-4 z-50 sm:right-6 sm:top-6">
+          <div className="pointer-events-auto">
+            <ToastDailyLimit onExitComplete={() => setIsToastMounted(false)} />
+          </div>
+        </div>
+      )}
       <MainScreenNew
         repositoryLabel={repositoryLabel}
         achievementsSidebarState={sidebarState}
