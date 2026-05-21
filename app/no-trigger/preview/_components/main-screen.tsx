@@ -125,7 +125,7 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
             message={
               hasVisitedAchievements 
                 ? "After the user visits the achievements view, the sidebar returns to its default state"
-                : "A newly unlocked achievement updates the sidebar state, encouraging users to explore achievements in the app"
+                : "A newly unlocked achievement updates the sidebar state to encourage users to explore achievements in the app. Try clicking on it"
             } 
             actionLabel={hasVisitedAchievements ? "Go to the next problem" : "Show where it is"}
             onAction={hasVisitedAchievements ? handleNextProblem : handleShowWhereItIs} 
