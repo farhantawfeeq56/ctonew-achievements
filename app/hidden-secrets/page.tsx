@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Snackbar } from "./snackbar";
 
 export const metadata: Metadata = {
   title: "Hidden Secrets",
@@ -18,6 +19,7 @@ export default function HiddenSecretsPage() {
           This route helps you reveal habits and systems that quietly drive progress.
           Document one insight and turn it into a strategy you can reuse.
         </p>
+        <Snackbar />
         <Link
           href="/"
           className="inline-flex w-fit rounded-lg border border-black/20 px-4 py-2 text-sm font-medium text-black transition hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:border-white/30 dark:text-white dark:hover:bg-white/10 dark:focus-visible:ring-white"
