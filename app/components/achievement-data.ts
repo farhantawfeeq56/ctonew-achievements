@@ -23,12 +23,4 @@ export const problems: Problem[] = [
     tileClassName: "bg-tile-two",
     href: "/hidden-secrets",
   },
-  {
-    number: "3",
-    title: "No Direction",
-    description:
-      "Even when users notice the achievements, they don\u2019t know what to do next. Awareness doesn\u2019t turn into action.",
-    tileClassName: "bg-tile-three",
-    href: "/no-direction",
-  },
 ];
