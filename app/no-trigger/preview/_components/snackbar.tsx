@@ -13,10 +13,10 @@ export function Snackbar({
 }: SnackbarProps) {
   return (
     <div
-      className={`transition-all duration-500 ease-out ${
+      className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
         isVisible 
           ? "translate-y-0 opacity-100" 
-          : "translate-y-10 opacity-0"
+          : "translate-y-full opacity-0"
       }`}
     >
       <aside className="[font-synthesis:none] flex w-full max-w-[802px] items-center gap-[200px] rounded-[14px] bg-[#212531] p-5 antialiased">
