@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MainScreenNew } from "./main-screen-new";
 import type { AchievementsSidebarState } from "./achievements-sidebar";
 import { ToastDailyLimit } from "./toast-daily-limit";
@@ -20,9 +20,18 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
   const [toastType, setToastType] = useState<ToastType>(null);
   const [clickCount, setClickCount] = useState(0);
   const [snackbarMessage, setSnackbarMessage] = useState(
-    "Click the button here to simulate daily usage limit being reached"
+    "Simulate hitting the daily usage limit for the first time."
   );
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [isSidebarAnimated, setIsSidebarAnimated] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSnackbar(true);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleAchievementsClick = () => {
     setIsShowingAchievements(true);
@@ -33,8 +42,9 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
     setIsShowingAchievements(false);
     if (achievementsCount === 2) {
       setIsCompleted(true);
-      setSnackbarMessage("You have completed the prototype, click the button to visit the full case study");
+      setSnackbarMessage("Secret achievements are revealed only when unlocked.");
       setSidebarState("attention-neglecting");
+      setShowSnackbar(true);
     } else {
       setSidebarState("attention-neglecting");
       setAchievementsCount(1);
@@ -43,16 +53,19 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
 
   const handleSnackbarAction = () => {
     if (isCompleted) {
-      window.location.href = "#";
+      window.location.href = "/hidden-secrets";
       return;
     }
-    if (clickCount === 0) {
-      setToastType("daily");
-      setSnackbarMessage("Click the button again to simulate the daily usage limit being reached again");
-    } else {
-      setToastType("speed");
-    }
-    setClickCount((prev) => prev + 1);
+
+    setShowSnackbar(false);
+
+    setTimeout(() => {
+      if (clickCount === 0) {
+        setToastType("daily");
+      } else {
+        setToastType("speed");
+      }
+    }, 500);
   };
 
   if (isShowingAchievements) {
@@ -78,13 +91,33 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
         <div className="pointer-events-none absolute right-4 top-4 z-50 sm:right-6 sm:top-6">
           <div className="pointer-events-auto">
             {toastType === "daily" ? (
-              <ToastDailyLimit onExitComplete={() => setToastType(null)} />
+              <ToastDailyLimit 
+                onExitComplete={() => {
+                  setToastType(null);
+                  setSnackbarMessage("Hit the limit again to trigger a secret achievement!");
+                  setClickCount(1);
+                  setTimeout(() => {
+                    setShowSnackbar(true);
+                  }, 500);
+                }} 
+              />
             ) : (
               <ToastSpeedLimit 
                 onExitComplete={() => {
                   setToastType(null);
                   setSidebarState("attention-seeking");
                   setAchievementsCount(2);
+                  setIsSidebarAnimated(true);
+                  
+                  setTimeout(() => {
+                    setIsSidebarAnimated(false);
+                  }, 2000);
+
+                  setTimeout(() => {
+                    setSnackbarMessage("Secret achievements are revealed only when unlocked.");
+                    setIsCompleted(true);
+                    setShowSnackbar(true);
+                  }, 1000);
                 }} 
               />
             )}
@@ -96,11 +129,17 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
         achievementsSidebarState={sidebarState}
         achievementsCount={achievementsCount}
         onAchievementsClick={handleAchievementsClick}
+        isAchievementsSidebarAnimated={isSidebarAnimated}
       />
 
       <div className="pointer-events-none fixed bottom-10 left-1/2 z-50 w-full max-w-[802px] -translate-x-1/2 px-4">
         <div className="flex justify-center pointer-events-auto">
-          <Snackbar message={snackbarMessage} onAction={handleSnackbarAction} />
+          <Snackbar 
+            message={snackbarMessage} 
+            onAction={handleSnackbarAction} 
+            isVisible={showSnackbar}
+            actionLabel={isCompleted ? "Visit Case Study" : "Click here"}
+          />
         </div>
       </div>
     </div>
