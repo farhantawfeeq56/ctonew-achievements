@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { MainScreenNew } from "./main-screen-new";
 import { ToastAchievement } from "./toast-achievement";
+import { Snackbar } from "./snackbar";
 import type { AchievementsSidebarState } from "./achievements-sidebar";
 
 const TOAST_ENTRY_DELAY_MS = 500;
@@ -89,6 +90,16 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
         achievementsCount={achievementsCount}
         onAchievementsClick={handleAchievementsClick}
       />
+
+      <div className="pointer-events-none fixed bottom-10 left-1/2 z-50 w-full max-w-[802px] -translate-x-1/2 px-4">
+        <div className="flex justify-center pointer-events-auto">
+          <Snackbar 
+            message="This is a dummy preview of the achievements screen." 
+            actionLabel="Got it"
+            onAction={() => {}} 
+          />
+        </div>
+      </div>
     </div>
   );
 }
