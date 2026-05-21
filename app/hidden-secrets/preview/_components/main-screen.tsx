@@ -42,7 +42,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
     setIsShowingAchievements(false);
     if (achievementsCount === 2) {
       setIsCompleted(true);
-      setSnackbarMessage("Secret achievements are revealed only when unlocked.");
+      setSnackbarMessage("You have completed the prototype of the solution of the two problems. Click the button to view the full case study");
       setSidebarState("attention-neglecting");
       setShowSnackbar(true);
     } else {
@@ -114,7 +114,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
                   }, 2000);
 
                   setTimeout(() => {
-                    setSnackbarMessage("Secret achievement Speed Limit is added to the achievements. Try clicking the achievements section in sidebar");
+                    setSnackbarMessage("You have completed the prototype of the solution of the two problems. Click the button to view the full case study");
                     setIsCompleted(true);
                     setShowSnackbar(true);
                   }, 1000);
@@ -138,7 +138,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
             message={snackbarMessage} 
             onAction={handleSnackbarAction} 
             isVisible={showSnackbar}
-            actionLabel={isCompleted ? "Visit Case Study" : "Click here"}
+            actionLabel={isCompleted ? "view the full case study" : "Click here"}
           />
         </div>
       </div>

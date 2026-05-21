@@ -6,6 +6,7 @@ import { MainScreenNew } from "./main-screen-new";
 import { ToastAchievement } from "./toast-achievement";
 import { Snackbar } from "./snackbar";
 import type { AchievementsSidebarState } from "./achievements-sidebar";
+import { CalmLoadingScreen } from "@/app/components/calm-loading-screen";
 
 const TOAST_ENTRY_DELAY_MS = 500;
 const SNACKBAR_ENTRY_DELAY_MS = 1000;
@@ -26,6 +27,7 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [isSidebarAnimated, setIsSidebarAnimated] = useState(false);
   const [hasVisitedAchievements, setHasVisitedAchievements] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!isVisible || toastEverExited) {
@@ -77,7 +79,10 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
   };
 
   const handleNextProblem = () => {
-    router.push("/hidden-secrets/preview");
+    setIsLoading(true);
+    setTimeout(() => {
+      router.push("/hidden-secrets/preview");
+    }, 1500);
   };
 
   if (isShowingAchievements) {
@@ -99,6 +104,7 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
 
   return (
     <div className="relative">
+      {isLoading && <CalmLoadingScreen />}
       {isToastMounted ? (
         <div className="pointer-events-none absolute right-4 top-4 z-30 sm:right-6 sm:top-6">
           <div className="pointer-events-auto">
