@@ -4,27 +4,44 @@ import { useState } from "react";
 import { MainScreenNew } from "./main-screen-new";
 import type { AchievementsSidebarState } from "./achievements-sidebar";
 import { ToastDailyLimit } from "./toast-daily-limit";
+import { ToastSpeedLimit } from "./toast-speed-limit";
 import { Snackbar } from "./snackbar";
 
 type MainScreenProps = {
   repositoryLabel: string;
 };
 
+type ToastType = null | "daily" | "speed";
+
 export function MainScreen({ repositoryLabel }: MainScreenProps) {
   const [sidebarState, setSidebarState] = useState<AchievementsSidebarState>("attention-neglecting");
   const [achievementsCount, setAchievementsCount] = useState(1);
   const [isShowingAchievements, setIsShowingAchievements] = useState(false);
-  const [isToastMounted, setIsToastMounted] = useState(false);
+  const [toastType, setToastType] = useState<ToastType>(null);
+  const [clickCount, setClickCount] = useState(0);
+  const [snackbarMessage, setSnackbarMessage] = useState(
+    "Click the button here to simulate daily usage limit being reached"
+  );
 
   const handleAchievementsClick = () => {
     setIsShowingAchievements(true);
-    setIsToastMounted(false);
+    setToastType(null);
   };
 
   const handleReturn = () => {
     setIsShowingAchievements(false);
     setSidebarState("attention-neglecting");
     setAchievementsCount(1);
+  };
+
+  const handleSnackbarAction = () => {
+    if (clickCount === 0) {
+      setToastType("daily");
+      setSnackbarMessage("Click the button again to simulate the daily usage limit being reached again");
+    } else {
+      setToastType("speed");
+    }
+    setClickCount((prev) => prev + 1);
   };
 
   if (isShowingAchievements) {
@@ -46,10 +63,14 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
 
   return (
     <div className="relative">
-      {isToastMounted && (
+      {toastType && (
         <div className="pointer-events-none absolute right-4 top-4 z-50 sm:right-6 sm:top-6">
           <div className="pointer-events-auto">
-            <ToastDailyLimit onExitComplete={() => setIsToastMounted(false)} />
+            {toastType === "daily" ? (
+              <ToastDailyLimit onExitComplete={() => setToastType(null)} />
+            ) : (
+              <ToastSpeedLimit onExitComplete={() => setToastType(null)} />
+            )}
           </div>
         </div>
       )}
@@ -62,7 +83,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
 
       <div className="pointer-events-none fixed bottom-10 left-1/2 z-50 w-full max-w-[802px] -translate-x-1/2 px-4">
         <div className="flex justify-center pointer-events-auto">
-          <Snackbar onAction={() => setIsToastMounted(true)} />
+          <Snackbar message={snackbarMessage} onAction={handleSnackbarAction} />
         </div>
       </div>
     </div>
