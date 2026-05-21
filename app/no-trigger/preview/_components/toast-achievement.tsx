@@ -1,10 +1,115 @@
 "use client";
 
-export function ToastAchievement() {
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const TOAST_PROGRESS_DURATION_MS = 5000;
+const ENTRY_DURATION_MS = 300;
+const EXIT_DURATION_MS = 250;
+
+type ToastAchievementProps = {
+  onExitComplete?: () => void;
+  onClick?: () => void;
+};
+
+type ToastPhase = "hidden" | "visible" | "exiting";
+
+export function ToastAchievement({ onExitComplete, onClick }: ToastAchievementProps) {
+  const [phase, setPhase] = useState<ToastPhase>("hidden");
+  const [isUnmounted, setIsUnmounted] = useState(false);
+  const [progressScale, setProgressScale] = useState(1);
+
+  const entryTimerRef = useRef<number | null>(null);
+  const progressTimerRef = useRef<number | null>(null);
+  const exitTimerRef = useRef<number | null>(null);
+
+  const onExitCompleteRef = useRef(onExitComplete);
+  useEffect(() => {
+    onExitCompleteRef.current = onExitComplete;
+  }, [onExitComplete]);
+
+  const startExit = useCallback(() => {
+    if (exitTimerRef.current !== null) {
+      return;
+    }
+
+    if (entryTimerRef.current !== null) {
+      window.clearTimeout(entryTimerRef.current);
+      entryTimerRef.current = null;
+    }
+
+    if (progressTimerRef.current !== null) {
+      window.clearTimeout(progressTimerRef.current);
+      progressTimerRef.current = null;
+    }
+
+    setPhase("exiting");
+
+    exitTimerRef.current = window.setTimeout(() => {
+      setIsUnmounted(true);
+      onExitCompleteRef.current?.();
+    }, EXIT_DURATION_MS);
+  }, []);
+
+  const startProgress = useCallback(() => {
+    if (exitTimerRef.current !== null) {
+      return;
+    }
+
+    setProgressScale(0);
+
+    progressTimerRef.current = window.setTimeout(() => {
+      startExit();
+    }, TOAST_PROGRESS_DURATION_MS);
+  }, [startExit]);
+
+  useEffect(() => {
+    let secondFrameId: number | null = null;
+
+    const entryFrameId = window.requestAnimationFrame(() => {
+      secondFrameId = window.requestAnimationFrame(() => {
+        setPhase("visible");
+
+        entryTimerRef.current = window.setTimeout(() => {
+          startProgress();
+        }, ENTRY_DURATION_MS);
+      });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(entryFrameId);
+      if (secondFrameId !== null) {
+        window.cancelAnimationFrame(secondFrameId);
+      }
+
+      if (entryTimerRef.current !== null) {
+        window.clearTimeout(entryTimerRef.current);
+      }
+
+      if (progressTimerRef.current !== null) {
+        window.clearTimeout(progressTimerRef.current);
+      }
+
+      if (exitTimerRef.current !== null) {
+        window.clearTimeout(exitTimerRef.current);
+      }
+    };
+  }, [startProgress]);
+
+  if (isUnmounted) {
+    return null;
+  }
+
+  const isVisible = phase === "visible";
+  const isExiting = phase === "exiting";
+
   return (
     <aside
       aria-live="polite"
-      className="[font-synthesis:none] flex w-[225px] flex-col gap-[10px] rounded-[8px] border border-[#303F44] bg-[linear-gradient(252.01deg,#252E37_2.54%,#2D3940_94.13%)] p-3 antialiased"
+      role="button"
+      onClick={onClick}
+      className={`[font-synthesis:none] flex w-fit cursor-pointer flex-col gap-[10px] rounded-[8px] border border-[#303F44] bg-[linear-gradient(252.01deg,#252E37_2.54%,#2D3940_94.13%)] p-3 antialiased transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity] ${
+        isVisible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+      } ${isExiting ? "duration-[250ms] ease-in" : ""}`}
     >
       <div className="flex items-center gap-[9px]">
         <div className="flex h-[35px] w-[35px] shrink-0 items-center justify-center rounded-[6px] bg-[#174032]">
@@ -37,8 +142,12 @@ export function ToastAchievement() {
 
           <button
             type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              startExit();
+            }}
             aria-label="Dismiss achievement toast"
-            className="flex h-3 w-3 shrink-0 items-center justify-center"
+            className="flex h-3 w-3 shrink-0 cursor-pointer items-center justify-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,8 +163,12 @@ export function ToastAchievement() {
         </div>
       </div>
 
-      <div className="flex h-[5px] w-[198px] shrink-0 rounded-[2px] bg-[#222732]">
-        <div className="h-[5px] w-[50px] shrink-0 rounded-[2px] bg-[#2AE06A]" />
+      <div className="flex h-[5px] w-full shrink-0 overflow-hidden rounded-[2px] bg-[#222732]">
+        <div
+          className={`h-[5px] w-full shrink-0 origin-left rounded-[2px] bg-[#2AE06A] transition-transform duration-[5000ms] ease-linear will-change-transform ${
+            progressScale === 0 ? "scale-x-0" : "scale-x-100"
+          }`}
+        />
       </div>
     </aside>
   );

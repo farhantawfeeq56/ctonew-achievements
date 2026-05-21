@@ -15,7 +15,7 @@ export function RepositoryRow({ id, name, isSelected, onSelect }: RepositoryRowP
       role="radio"
       aria-checked={isSelected}
       onClick={() => onSelect(id)}
-      className={`[font-synthesis:none] flex min-h-[40px] w-full shrink-0 items-center gap-4 rounded-[8px] px-3 py-2.5 text-left antialiased transition-[background-color,color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-inset ${
+      className={`[font-synthesis:none] flex min-h-[40px] w-full shrink-0 items-center gap-4 rounded-[8px] px-3 py-2.5 text-left antialiased transition-[background-color,color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84a0ff] focus-visible:ring-inset cursor-pointer ${
         isSelected ? "bg-[#202928]" : "bg-transparent hover:bg-[#27262B]"
       }`}
       data-selected={isSelected}
