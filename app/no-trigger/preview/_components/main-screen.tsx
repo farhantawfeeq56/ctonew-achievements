@@ -14,7 +14,8 @@ type MainScreenProps = {
 
 export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
   const [isToastMounted, setIsToastMounted] = useState(false);
-  const [sidebarState, setSidebarState] = useState<AchievementsSidebarState>("attention-neglecting-0");
+  const [sidebarState, setSidebarState] = useState<AchievementsSidebarState>("attention-neglecting");
+  const [achievementsCount, setAchievementsCount] = useState(0);
   const [isShowingAchievements, setIsShowingAchievements] = useState(false);
   const [toastEverExited, setToastEverExited] = useState(false);
 
@@ -35,6 +36,7 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
   const handleToastExit = useCallback(() => {
     setIsToastMounted(false);
     setSidebarState("attention-seeking");
+    setAchievementsCount(1);
     setToastEverExited(true);
   }, []);
 
@@ -46,6 +48,7 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
   const handleReturn = () => {
     setIsShowingAchievements(false);
     setSidebarState("attention-neglecting");
+    setAchievementsCount(1);
     setToastEverExited(true);
     setIsToastMounted(false);
   };
@@ -83,6 +86,7 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
       <MainScreenNew
         repositoryLabel={repositoryLabel}
         achievementsSidebarState={sidebarState}
+        achievementsCount={achievementsCount}
         onAchievementsClick={handleAchievementsClick}
       />
     </div>
