@@ -20,7 +20,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
   const [toastType, setToastType] = useState<ToastType>(null);
   const [clickCount, setClickCount] = useState(0);
   const [snackbarMessage, setSnackbarMessage] = useState(
-    "Simulate hitting the daily usage limit for the first time."
+    "Simulate hitting the daily usage limit."
   );
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [isSidebarAnimated, setIsSidebarAnimated] = useState(false);
@@ -114,7 +114,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
                   }, 2000);
 
                   setTimeout(() => {
-                    setSnackbarMessage("Secret achievements are revealed only when unlocked.");
+                    setSnackbarMessage("Secret achievement Speed Limit is added to the achievements. Try clicking the achievements section in sidebar");
                     setIsCompleted(true);
                     setShowSnackbar(true);
                   }, 1000);
