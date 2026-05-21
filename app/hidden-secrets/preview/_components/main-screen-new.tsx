@@ -8,6 +8,7 @@ type MainScreenNewProps = {
   achievementsSidebarState: AchievementsSidebarState;
   achievementsCount?: number;
   onAchievementsClick: () => void;
+  isAchievementsSidebarAnimated?: boolean;
 };
 
 export function MainScreenNew({
@@ -15,6 +16,7 @@ export function MainScreenNew({
   achievementsSidebarState,
   achievementsCount,
   onAchievementsClick,
+  isAchievementsSidebarAnimated,
 }: MainScreenNewProps) {
   return (
     <main className="[font-synthesis:none] flex min-h-screen overflow-hidden bg-[#0F1118] text-[#ECEEF4] antialiased">
@@ -95,6 +97,7 @@ export function MainScreenNew({
               state={achievementsSidebarState} 
               count={achievementsCount} 
               onClick={onAchievementsClick} 
+              isAnimated={isAchievementsSidebarAnimated}
             />
             <button
               type="button"
