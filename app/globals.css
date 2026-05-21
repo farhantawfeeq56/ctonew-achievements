@@ -25,3 +25,22 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
+
+@keyframes outline-pulse {
+  0% {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  50% {
+    outline: 2px solid #54B569;
+    outline-offset: 2px;
+  }
+  100% {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+}
+
+.animate-sidebar-outline {
+  animation: outline-pulse 1s ease-in-out;
+}

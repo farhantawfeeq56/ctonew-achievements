@@ -9,12 +9,14 @@ type AchievementsSidebarProps = {
   state?: AchievementsSidebarState;
   count?: number;
   onClick?: () => void;
+  isAnimated?: boolean;
 };
 
 export function AchievementsSidebar({ 
   state = "default", 
   count = 1, 
-  onClick 
+  onClick,
+  isAnimated = false
 }: AchievementsSidebarProps) {
   const isAttentionSeeking = state === "attention-seeking";
   const isAttentionNeglecting = state === "attention-neglecting";
@@ -24,7 +26,9 @@ export function AchievementsSidebar({
     <button
       type="button"
       onClick={onClick}
-      className="flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985]"
+      className={`flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg px-2.5 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.985] ${
+        isAnimated ? "animate-sidebar-outline" : ""
+      }`}
     >
       {isAttentionState ? (
         <div className="[font-synthesis:none] flex w-full items-center antialiased p-0">
