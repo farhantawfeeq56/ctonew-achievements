@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MainScreenNew } from "./main-screen-new";
 import type { AchievementsSidebarState } from "./achievements-sidebar";
 import { ToastDailyLimit } from "./toast-daily-limit";
+import { Snackbar } from "./snackbar";
 
 type MainScreenProps = {
   repositoryLabel: string;
@@ -14,14 +15,6 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
   const [achievementsCount, setAchievementsCount] = useState(1);
   const [isShowingAchievements, setIsShowingAchievements] = useState(false);
   const [isToastMounted, setIsToastMounted] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsToastMounted(true);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleAchievementsClick = () => {
     setIsShowingAchievements(true);
@@ -66,6 +59,12 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
         achievementsCount={achievementsCount}
         onAchievementsClick={handleAchievementsClick}
       />
+
+      <div className="pointer-events-none fixed bottom-10 left-1/2 z-50 w-full max-w-[802px] -translate-x-1/2 px-4">
+        <div className="flex justify-center pointer-events-auto">
+          <Snackbar onAction={() => setIsToastMounted(true)} />
+        </div>
+      </div>
     </div>
   );
 }
