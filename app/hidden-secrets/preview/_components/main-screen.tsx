@@ -53,7 +53,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
 
   const handleSnackbarAction = () => {
     if (isCompleted) {
-      window.location.href = "/hidden-secrets";
+      window.location.href = "/hidden-secrets/preview";
       return;
     }
 

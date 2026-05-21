@@ -14,7 +14,7 @@ const achievementCards: AchievementCardData[] = [
     title: "No Trigger",
     description:
       "Users take meaningful actions, but the system stays silent. The app fails to convert user actions into curiosity moments.",
-    href: "/no-trigger",
+    href: "/no-trigger/preview",
     badgeClassName: "bg-[#2c6e48]",
   },
   {
@@ -22,7 +22,7 @@ const achievementCards: AchievementCardData[] = [
     title: "Hidden Secrets",
     description:
       "\"Secrets\" are designed to create curiosity. Secrets need not be too lost in the dark, they can have some directional tension.",
-    href: "/hidden-secrets",
+    href: "/hidden-secrets/preview",
     badgeClassName: "bg-[#4c956c]",
   },
 ];
