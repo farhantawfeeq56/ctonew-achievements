@@ -2,24 +2,34 @@ type SnackbarProps = {
   message?: string;
   actionLabel?: string;
   onAction?: () => void;
+  isVisible?: boolean;
 };
 
 export function Snackbar({
   message = "This is a dummy preview of the achievements screen.",
   actionLabel = "Got it",
   onAction,
+  isVisible = false,
 }: SnackbarProps) {
   return (
-    <aside className="[font-synthesis:none] flex w-full max-w-[802px] items-center gap-[200px] rounded-[14px] bg-[#212531] p-5 antialiased">
-      <p className="font-sans text-[16px] leading-[20px] text-white">{message}</p>
+    <div
+      className={`transition-all duration-500 ease-out ${
+        isVisible 
+          ? "translate-y-0 opacity-100" 
+          : "translate-y-10 opacity-0"
+      }`}
+    >
+      <aside className="[font-synthesis:none] flex w-full max-w-[802px] items-center gap-[200px] rounded-[14px] bg-[#212531] p-5 antialiased">
+        <p className="font-sans text-[16px] leading-[20px] text-white">{message}</p>
 
-      <button
-        type="button"
-        onClick={onAction}
-        className="shrink-0 rounded-lg bg-[#5141F9] px-[10px] py-[10px] font-sans text-[16px] leading-[20px] text-white transition-colors hover:bg-[#5f51ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#212531]"
-      >
-        {actionLabel}
-      </button>
-    </aside>
+        <button
+          type="button"
+          onClick={onAction}
+          className="shrink-0 rounded-lg bg-[#5141F9] px-[10px] py-[10px] font-sans text-[16px] leading-[20px] text-white transition-colors hover:bg-[#5f51ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#212531]"
+        >
+          {actionLabel}
+        </button>
+      </aside>
+    </div>
   );
 }

@@ -1,12 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { MainScreenNew } from "./main-screen-new";
 import { ToastAchievement } from "./toast-achievement";
 import { Snackbar } from "./snackbar";
 import type { AchievementsSidebarState } from "./achievements-sidebar";
 
 const TOAST_ENTRY_DELAY_MS = 500;
+const SNACKBAR_ENTRY_DELAY_MS = 1000;
 
 type MainScreenProps = {
   repositoryLabel: string;
@@ -14,11 +16,16 @@ type MainScreenProps = {
 };
 
 export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
+  const router = useRouter();
   const [isToastMounted, setIsToastMounted] = useState(false);
   const [sidebarState, setSidebarState] = useState<AchievementsSidebarState>("attention-neglecting");
   const [achievementsCount, setAchievementsCount] = useState(0);
   const [isShowingAchievements, setIsShowingAchievements] = useState(false);
   const [toastEverExited, setToastEverExited] = useState(false);
+  
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [isSidebarAnimated, setIsSidebarAnimated] = useState(false);
+  const [hasVisitedAchievements, setHasVisitedAchievements] = useState(false);
 
   useEffect(() => {
     if (!isVisible || toastEverExited) {
@@ -39,19 +46,38 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
     setSidebarState("attention-seeking");
     setAchievementsCount(1);
     setToastEverExited(true);
+    
+    // Trigger Snackbar appearance after a delay
+    setTimeout(() => {
+      setShowSnackbar(true);
+    }, SNACKBAR_ENTRY_DELAY_MS);
   }, []);
 
   const handleAchievementsClick = () => {
     setIsShowingAchievements(true);
     setIsToastMounted(false);
+    setShowSnackbar(false);
   };
 
   const handleReturn = () => {
     setIsShowingAchievements(false);
-    setSidebarState("attention-neglecting");
+    setSidebarState("default");
     setAchievementsCount(1);
     setToastEverExited(true);
     setIsToastMounted(false);
+    setHasVisitedAchievements(true);
+    setShowSnackbar(true);
+  };
+
+  const handleShowWhereItIs = () => {
+    setIsSidebarAnimated(true);
+    setTimeout(() => {
+      setIsSidebarAnimated(false);
+    }, 1000);
+  };
+
+  const handleNextProblem = () => {
+    router.push("/hidden-secrets/preview");
   };
 
   if (isShowingAchievements) {
@@ -89,14 +115,20 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
         achievementsSidebarState={sidebarState}
         achievementsCount={achievementsCount}
         onAchievementsClick={handleAchievementsClick}
+        isAchievementsSidebarAnimated={isSidebarAnimated}
       />
 
       <div className="pointer-events-none fixed bottom-10 left-1/2 z-50 w-full max-w-[802px] -translate-x-1/2 px-4">
         <div className="flex justify-center pointer-events-auto">
           <Snackbar 
-            message="This is a dummy preview of the achievements screen." 
-            actionLabel="Got it"
-            onAction={() => {}} 
+            isVisible={showSnackbar}
+            message={
+              hasVisitedAchievements 
+                ? "After the user visits the achievements view, the sidebar returns to its default state"
+                : "A newly unlocked achievement updates the sidebar state, encouraging users to explore achievements in the app"
+            } 
+            actionLabel={hasVisitedAchievements ? "Go to the next problem" : "Show where it is"}
+            onAction={hasVisitedAchievements ? handleNextProblem : handleShowWhereItIs} 
           />
         </div>
       </div>
