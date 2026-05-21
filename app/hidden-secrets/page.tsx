@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Snackbar } from "./snackbar";
+import { Snackbar } from "./preview/_components/snackbar";
 
 export const metadata: Metadata = {
   title: "Hidden Secrets",
