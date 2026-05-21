@@ -25,6 +25,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [isSidebarAnimated, setIsSidebarAnimated] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [isIntermediate, setIsIntermediate] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,6 +55,16 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
   const handleSnackbarAction = () => {
     if (isCompleted) {
       window.location.href = "/hidden-secrets/preview";
+      return;
+    }
+
+    if (isIntermediate) {
+      setIsSidebarAnimated(true);
+      setTimeout(() => {
+        setIsSidebarAnimated(false);
+      }, 2000);
+      setShowSnackbar(false);
+      setIsIntermediate(false);
       return;
     }
 
@@ -107,17 +118,12 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
                   setToastType(null);
                   setSidebarState("attention-seeking");
                   setAchievementsCount(2);
-                  setIsSidebarAnimated(true);
                   
                   setTimeout(() => {
-                    setIsSidebarAnimated(false);
-                  }, 2000);
-
-                  setTimeout(() => {
-                    setSnackbarMessage("You have completed the prototype of the solution of the two problems. Click the button to view the full case study");
-                    setIsCompleted(true);
+                    setSnackbarMessage("Secret achievement unlocked!");
+                    setIsIntermediate(true);
                     setShowSnackbar(true);
-                  }, 1000);
+                  }, 500);
                 }} 
               />
             )}
@@ -138,7 +144,13 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
             message={snackbarMessage} 
             onAction={handleSnackbarAction} 
             isVisible={showSnackbar}
-            actionLabel={isCompleted ? "view the full case study" : "Click here"}
+            actionLabel={
+              isCompleted 
+                ? "view the full case study" 
+                : isIntermediate 
+                  ? "Show where it is" 
+                  : "Click here"
+            }
           />
         </div>
       </div>
