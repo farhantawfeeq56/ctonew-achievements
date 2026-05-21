@@ -18,7 +18,7 @@ type MainScreenProps = {
 export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
   const router = useRouter();
   const [isToastMounted, setIsToastMounted] = useState(false);
-  const [sidebarState, setSidebarState] = useState<AchievementsSidebarState>("attention-neglecting");
+  const [sidebarState, setSidebarState] = useState<AchievementsSidebarState>("default");
   const [achievementsCount, setAchievementsCount] = useState(0);
   const [isShowingAchievements, setIsShowingAchievements] = useState(false);
   const [toastEverExited, setToastEverExited] = useState(false);
@@ -66,11 +66,6 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
     setToastEverExited(true);
     setIsToastMounted(false);
     setHasVisitedAchievements(true);
-    
-    // Delay Snackbar appearance upon return too? 
-    // The requirement didn't specify delay for the second snackbar, 
-    // but usually it's better. 
-    // Actually, "Update Snackbar copy upon return" implies it should show up.
     setShowSnackbar(true);
   };
 
