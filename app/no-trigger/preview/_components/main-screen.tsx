@@ -18,7 +18,7 @@ type MainScreenProps = {
 export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
   const router = useRouter();
   const [isToastMounted, setIsToastMounted] = useState(false);
-  const [sidebarState, setSidebarState] = useState<AchievementsSidebarState>("attention-neglecting");
+  const [sidebarState, setSidebarState] = useState<AchievementsSidebarState>("default");
   const [achievementsCount, setAchievementsCount] = useState(0);
   const [isShowingAchievements, setIsShowingAchievements] = useState(false);
   const [toastEverExited, setToastEverExited] = useState(false);
@@ -61,7 +61,7 @@ export function MainScreen({ repositoryLabel, isVisible }: MainScreenProps) {
 
   const handleReturn = () => {
     setIsShowingAchievements(false);
-    setSidebarState("default");
+    setSidebarState("attention-neglecting");
     setAchievementsCount(1);
     setToastEverExited(true);
     setIsToastMounted(false);
