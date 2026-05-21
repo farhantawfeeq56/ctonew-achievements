@@ -22,6 +22,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
   const [snackbarMessage, setSnackbarMessage] = useState(
     "Click the button here to simulate daily usage limit being reached"
   );
+  const [isCompleted, setIsCompleted] = useState(false);
 
   const handleAchievementsClick = () => {
     setIsShowingAchievements(true);
@@ -30,11 +31,21 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
 
   const handleReturn = () => {
     setIsShowingAchievements(false);
-    setSidebarState("attention-neglecting");
-    setAchievementsCount(1);
+    if (achievementsCount === 2) {
+      setIsCompleted(true);
+      setSnackbarMessage("You have completed the prototype, click the button to visit the full case study");
+      setSidebarState("attention-neglecting");
+    } else {
+      setSidebarState("attention-neglecting");
+      setAchievementsCount(1);
+    }
   };
 
   const handleSnackbarAction = () => {
+    if (isCompleted) {
+      window.location.href = "#";
+      return;
+    }
     if (clickCount === 0) {
       setToastType("daily");
       setSnackbarMessage("Click the button again to simulate the daily usage limit being reached again");
@@ -46,9 +57,9 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
 
   if (isShowingAchievements) {
     return (
-      <div className="[font-synthesis:none] flex min-h-screen flex-col items-center justify-center bg-[#0F1118] text-[#ECEEF4] antialiased">
-        <p className="mb-8 font-['Instrument_Sans',system-ui,sans-serif] text-xl text-[#F1F2F6]">
-          This is a dummy preview of the achievements screen.
+      <div className="[font-synthesis:none] flex min-h-screen flex-col items-center justify-center bg-[#0F1118] text-[#ECEEF4] antialiased px-4">
+        <p className="mb-8 font-['Instrument_Sans',system-ui,sans-serif] text-xl text-[#F1F2F6] max-w-2xl text-center">
+          This is a dummy preview of the achievements screen. Secret achievement &quot;Speed limit&quot; will be unlocked for the user.
         </p>
         <button
           type="button"
@@ -69,7 +80,13 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
             {toastType === "daily" ? (
               <ToastDailyLimit onExitComplete={() => setToastType(null)} />
             ) : (
-              <ToastSpeedLimit onExitComplete={() => setToastType(null)} />
+              <ToastSpeedLimit 
+                onExitComplete={() => {
+                  setToastType(null);
+                  setSidebarState("attention-seeking");
+                  setAchievementsCount(2);
+                }} 
+              />
             )}
           </div>
         </div>
