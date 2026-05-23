@@ -100,14 +100,7 @@ export default function Home() {
           </ul>
         </section>
 
-        <section className="mx-auto mt-7 w-full max-w-[672px]" aria-label="Development tools">
-          <Link
-            href="/lab/components"
-            className="inline-flex items-center rounded-lg border border-dashed border-[#7a1f2b]/30 bg-white px-4 py-2.5 text-sm font-medium text-[#7a1f2b] transition hover:bg-[#7a1f2b]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7a1f2b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f3f1ed]"
-          >
-            Component Playground
-          </Link>
-        </section>
+        
       </div>
     </main>
   );
