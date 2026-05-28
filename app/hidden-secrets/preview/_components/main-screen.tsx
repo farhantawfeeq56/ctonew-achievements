@@ -54,7 +54,7 @@ export function MainScreen({ repositoryLabel }: MainScreenProps) {
 
   const handleSnackbarAction = () => {
     if (isCompleted) {
-      window.location.href = "/hidden-secrets/preview";
+      window.location.href = "https://work.farhantawfeeq.com/case-studies/cto-new";
       return;
     }
 
